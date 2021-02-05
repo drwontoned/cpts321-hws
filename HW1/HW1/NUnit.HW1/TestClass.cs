@@ -13,28 +13,36 @@ namespace NUnit.HW1
         [Test]
         public void TestSplitString()
         {
-            string oneNum = "1"; // one number string
-            string twoNum = "1 2"; // two number string
-            string threeNum = "1 2 3"; // three number string
-
-
-            Assert.AreEqual(
+            // one number string test
+            string oneNum = "1"; 
+             Assert.AreEqual(
                 1, //expected value
                 splitString(oneNum).Length); // actual value
 
+            // two number string test
+            string twoNum = "1 2"; 
             Assert.AreEqual(
                 2, //expected value
-                splitString(oneNum).Length); // actual value
+                splitString(twoNum).Length); // actual value
 
+            // three number string
+            string threeNum = "1 2 3"; 
             Assert.AreEqual(
                 3, //expected value
-                splitString(oneNum).Length); // actual value
+                splitString(threeNum).Length); // actual value
+
+            // three number string of duplicates test
+            string threeDupes = "1 1 1"; 
+            Assert.AreEqual(
+                1, //expected value
+                splitString(threeDupes).Length); // actual value
         }
 
         [Test]
         public void TestNewNode()
         {
-            Node testNode1 = new Node(1); // creation of node to be tested with a value of 1
+            // creation of node to be tested with a value of 1
+            Node testNode1 = new Node(1); 
 
             Assert.AreEqual(
                 1, // expected value
