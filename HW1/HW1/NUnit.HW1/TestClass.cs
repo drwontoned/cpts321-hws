@@ -10,11 +10,24 @@ namespace NUnit.HW1
     public class TestClass
     {
         [Test]
-        public void TestMethod()
+        public void TestSplitString()
         {
-            // TODO: Add your test code here
-            var answer = 42;
-            Assert.That(answer, Is.EqualTo(42), "Some useful error message");
+            string oneNum = "1"; // one number string
+            string twoNum = "1 2"; // two number string
+            string threeNum = "1 2 3"; // three number string
+
+
+            Assert.AreEqual(
+                1, //expected value
+                splitString(oneNum).Length); // actual value
+
+            Assert.AreEqual(
+                2, //expected value
+                splitString(oneNum).Length); // actual value
+
+            Assert.AreEqual(
+                3, //expected value
+                splitString(oneNum).Length); // actual value
         }
     }
 }
