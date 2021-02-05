@@ -41,6 +41,77 @@ namespace NUnit.HW1
                 testNode.getValue); // actual value
         }
 
+        [Test]
+        public void TestTreeInsertion()
+        {
+            // set up new test tree to test 1 insertion
+            BinarySearchTree testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+
+            Assert.AreEqual(
+                0, // expected value
+                testTree.Root.Value); // actual value
+
+            Assert.AreEqual(
+                null, // expected value
+                testTree.Root.LeftChild); // actual value
+
+            Assert.AreEqual(
+                null, // expected value
+                testTree.Root.RightChild); // actual value
+
+
+            // set up new test tree to test 2 insertion causing a right child
+            testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+            testTree.Root = testTree.Insert(testTree.Root, 1);
+            Assert.AreEqual(
+                0, // expected value
+                testTree.Root.Value); // actual value
+
+            Assert.AreEqual(
+                null, // expected value
+                testTree.Root.LeftChild); // actual value
+
+            Assert.AreEqual(
+                1, // expected value
+                testTree.Root.RightChild); // actual value
+
+
+            // set up new test tree to test 2 insertion causing a left child
+            testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 1);
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+            Assert.AreEqual(
+                1, // expected value
+                testTree.Root.Value); // actual value
+
+            Assert.AreEqual(
+                0, // expected value
+                testTree.Root.LeftChild); // actual value
+
+            Assert.AreEqual(
+                null, // expected value
+                testTree.Root.RightChild); // actual value
+
+
+            // set up new test tree to test 3 insertion causing a left and right child
+            testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 1);
+            testTree.Root = testTree.Insert(testTree.Root, 2);
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+            Assert.AreEqual(
+                1, // expected value
+                testTree.Root.Value); // actual value
+
+            Assert.AreEqual(
+                0, // expected value
+                testTree.Root.LeftChild); // actual value
+
+            Assert.AreEqual(
+                2, // expected value
+                testTree.Root.RightChild); // actual value
+        }
 
     }
 }
