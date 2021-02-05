@@ -188,5 +188,24 @@ namespace NUnit.HW1
                 7, // expected value
                 testTree.Depth()); // actual value
         }
+
+        [Test]
+        public void TestMinDepth()
+        {
+            // set up new test tree to test 7 insertions in sorted order
+            testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+            testTree.Root = testTree.Insert(testTree.Root, 1);
+            testTree.Root = testTree.Insert(testTree.Root, 2);
+            testTree.Root = testTree.Insert(testTree.Root, 3);
+            testTree.Root = testTree.Insert(testTree.Root, 4);
+            testTree.Root = testTree.Insert(testTree.Root, 5);
+            testTree.Root = testTree.Insert(testTree.Root, 6);
+
+            Assert.AreEqual(
+                3, // expected value
+                testTree.MinDepth()); // actual value
+        }
+
     }
 }
