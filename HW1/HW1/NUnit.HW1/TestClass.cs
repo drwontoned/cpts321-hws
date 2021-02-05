@@ -138,5 +138,24 @@ namespace NUnit.HW1
                 "0 1 2 3 4 5 6", // expected value
                 testTree.getSortedOrder()); // actual value
         }
+
+        [Test]
+        public void TestCount()
+        {
+            // set up new test tree to test 7 insertions
+            testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 3);
+            testTree.Root = testTree.Insert(testTree.Root, 2);
+            testTree.Root = testTree.Insert(testTree.Root, 1);
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+            testTree.Root = testTree.Insert(testTree.Root, 6);
+            testTree.Root = testTree.Insert(testTree.Root, 5);
+            testTree.Root = testTree.Insert(testTree.Root, 4);
+
+            Assert.AreEqual(
+                7, // expected value
+                testTree.Count()); // actual value
+        }
+
     }
 }
