@@ -125,7 +125,7 @@ namespace NUnit.HW1
         public void TestSortedOrder()
         {
             // set up new test tree to test 7 insertions not in sorted order
-            testTree = new BinarySearchTree();
+            BinarySearchTree testTree = new BinarySearchTree();
             testTree.Root = testTree.Insert(testTree.Root, 3);
             testTree.Root = testTree.Insert(testTree.Root, 2);
             testTree.Root = testTree.Insert(testTree.Root, 1);
@@ -143,7 +143,7 @@ namespace NUnit.HW1
         public void TestCount()
         {
             // set up new test tree to test 7 insertions
-            testTree = new BinarySearchTree();
+            BinarySearchTree testTree = new BinarySearchTree();
             testTree.Root = testTree.Insert(testTree.Root, 3);
             testTree.Root = testTree.Insert(testTree.Root, 2);
             testTree.Root = testTree.Insert(testTree.Root, 1);
@@ -157,5 +157,36 @@ namespace NUnit.HW1
                 testTree.Count()); // actual value
         }
 
+        [Test]
+        public void TestDepth()
+        {
+            // set up new test tree to test 7 insertions not in sorted order
+            BinarySearchTree testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 3);
+            testTree.Root = testTree.Insert(testTree.Root, 2);
+            testTree.Root = testTree.Insert(testTree.Root, 1);
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+            testTree.Root = testTree.Insert(testTree.Root, 6);
+            testTree.Root = testTree.Insert(testTree.Root, 5);
+            testTree.Root = testTree.Insert(testTree.Root, 4);
+
+            Assert.AreEqual(
+                3, // expected value
+                testTree.Depth()); // actual value
+
+            // set up new test tree to test 7 insertions in sorted order
+            testTree = new BinarySearchTree();
+            testTree.Root = testTree.Insert(testTree.Root, 0);
+            testTree.Root = testTree.Insert(testTree.Root, 1);
+            testTree.Root = testTree.Insert(testTree.Root, 2);
+            testTree.Root = testTree.Insert(testTree.Root, 3);
+            testTree.Root = testTree.Insert(testTree.Root, 4);
+            testTree.Root = testTree.Insert(testTree.Root, 5);
+            testTree.Root = testTree.Insert(testTree.Root, 6);
+
+            Assert.AreEqual(
+                7, // expected value
+                testTree.Depth()); // actual value
+        }
     }
 }
