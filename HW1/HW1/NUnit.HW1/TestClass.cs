@@ -9,6 +9,7 @@ namespace NUnit.HW1
     [TestFixture]
     public class TestClass
     {
+
         [Test]
         public void TestSplitString()
         {
@@ -29,5 +30,17 @@ namespace NUnit.HW1
                 3, //expected value
                 splitString(oneNum).Length); // actual value
         }
+
+        [Test]
+        public void TestNewNode()
+        {
+            Node testNode1 = new Node(1); // creation of node to be tested with a value of 1
+
+            Assert.AreEqual(
+                1, // expected value
+                testNode.getValue); // actual value
+        }
+
+
     }
 }
