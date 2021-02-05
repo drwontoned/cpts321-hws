@@ -46,7 +46,7 @@ namespace NUnit.HW1
 
             Assert.AreEqual(
                 1, // expected value
-                testNode.getValue); // actual value
+                testNode.Value); // actual value
         }
 
         [Test]
