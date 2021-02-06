@@ -14,7 +14,6 @@ namespace HW1
     {
         private Node root; // the root node of the tree.
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BinarySearchTree"/> class.
         /// </summary>
@@ -69,7 +68,6 @@ namespace HW1
                     // check if value is less than current nodes value.
                     if (value < current.Value)
                     {
-
                         // if left child exists move down to that child and set that as the current.
                         if (current.LeftChild != null)
                         {
@@ -115,7 +113,7 @@ namespace HW1
                 this.root = item;
             }
 
-            return this.root;
+            return this.root; // return root of this tree
         }
 
         /// <summary>
@@ -139,7 +137,7 @@ namespace HW1
                 sortedOrder += this.SortedOrder(root.RightChild); // traverse right sub tree generating in order string.
             }
 
-            return sortedOrder;
+            return sortedOrder; // return sorted order of values as a string.
         }
 
         /// <summary>
@@ -163,7 +161,7 @@ namespace HW1
                 count += this.Count(root.RightChild); // increase count by calling this method on the right child.
             }
 
-            return count;
+            return count; // return the total count of nodes in the tree starting from root.
         }
 
         /// <summary>
@@ -182,21 +180,22 @@ namespace HW1
             // if node is not null
             if (root != null)
             {
-                levels = 1;
-                int leftLevels = this.Levels(root.LeftChild);
-                int rightLevels = this.Levels(root.RightChild);
+                levels = 1; // level set to 1 since root is not null.
+                int leftLevels = this.Levels(root.LeftChild); // recurse into the left sub tree to see if there are more levels.
+                int rightLevels = this.Levels(root.RightChild); // recurse into the right sub tree to see if there are more levels.
 
+                // check left sub tree has more levels than the right sub tree
                 if (leftLevels > rightLevels)
                 {
-                    levels += leftLevels;
+                    levels += leftLevels; // add left sub trees levels because its larger
                 }
                 else
                 {
-                    levels += rightLevels;
+                    levels += rightLevels; // add right sub trees levels because its larger
                 }
             }
 
-            return levels;
+            return levels; // return total levels in the tree starting from the root.
         }
 
         /// <summary>
@@ -207,18 +206,19 @@ namespace HW1
         /// </returns>
         public int MinLevels()
         {
-            int count = this.Count(this.root);
-            int min = 0;
-            int currentLevel = 1;
+            int count = this.Count(this.root); // get total number of nodes in tree.
+            int min = 0; // initialize min number of levels to 0.
+            int currentLevel = 1; // set the current level to 1 in case count is greater than 0.
 
+            // loop while count greater than 0
             while (count > 0)
             {
-                count -= currentLevel;
-                currentLevel *= 2;
-                min++;
+                count -= currentLevel; // decrement count based on the current level
+                currentLevel *= 2; // multiply current level by 2 as the next level should have double the amount of nodes
+                min++; // increase min as you can go down another level
             }
 
-            return min;
+            return min; // return theoretical minimum number of levels
         }
     }
 }
