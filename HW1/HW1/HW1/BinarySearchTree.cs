@@ -115,7 +115,7 @@ namespace HW1
                 this.root = item;
             }
 
-            return root;
+            return this.root;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace HW1
             if (root != null)
             {
                 sortedOrder += this.SortedOrder(root.LeftChild); // traverse left sub tree generating in order string.
-                sortedOrder += root.Value + " "; // add root to string.
+                sortedOrder += root.Value.ToString() + " "; // add root to string.
                 sortedOrder += this.SortedOrder(root.RightChild); // traverse right sub tree generating in order string.
             }
 
@@ -182,6 +182,7 @@ namespace HW1
             // if node is not null
             if (root != null)
             {
+                levels = 1;
                 int leftLevels = this.Levels(root.LeftChild);
                 int rightLevels = this.Levels(root.RightChild);
 
