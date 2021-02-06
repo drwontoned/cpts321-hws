@@ -130,7 +130,7 @@ namespace HW1
             {
                 sortedOrder += this.SortedOrder(root.LeftChild); // traverse left sub tree generating in order string.
                 sortedOrder += root.Value + " "; // add root to string.
-                sortedOrder += this.Count(root.RightChild); // traverse right sub tree generating in order string.
+                sortedOrder += this.SortedOrder(root.RightChild); // traverse right sub tree generating in order string.
             }
 
             return sortedOrder;
@@ -158,6 +158,37 @@ namespace HW1
             }
 
             return count;
+        }
+
+        /// <summary>
+        /// Recursive method that gets the max number of levels in the tree.
+        /// </summary>
+        /// <param name="root">
+        /// the node the count will base off of.
+        /// </param>
+        /// <returns>
+        /// the integer number of max levels in the tree.
+        /// </returns>
+        public int MaxLevels(Node root)
+        {
+            int levels = 0; // initialize count of 0.
+
+            // if node is not null
+            if (root != null)
+            {
+                int leftLevels = this.MaxLevels(root.LeftChild);
+                int rightLevels = this.MaxLevels(root.RightChild);
+
+                if (leftLevels > rightLevels)
+                {
+                    levels += leftLevels;
+                }
+                else
+                {
+                    levels += rightLevels;
+                }
+            }
+            return levels;
         }
     }
 }
