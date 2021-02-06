@@ -111,5 +111,53 @@ namespace HW1
 
             return root;
         }
+
+        /// <summary>
+        /// Recursive method that does an inorder traversal of the tree to generate a string.
+        /// </summary>
+        /// <param name="root">
+        /// the root node of the tree.
+        /// </param>
+        /// <returns>
+        /// A string of values in sorted order from the tree.
+        /// </returns>
+        public string SortedOrder(Node root)
+        {
+            string sortedOrder = string.Empty; // initialize empty string
+
+            // if root not null then do an inorder traversal of tree
+            if (root != null)
+            {
+                sortedOrder += this.SortedOrder(root.LeftChild); // traverse left sub tree generating in order string.
+                sortedOrder += root.Value + " "; // add root to string.
+                sortedOrder += this.Count(root.RightChild); // traverse right sub tree generating in order string.
+            }
+
+            return sortedOrder;
+        }
+
+        /// <summary>
+        /// Recursive method that gets the total number of nodes in a tree.
+        /// </summary>
+        /// <param name="root">
+        /// the node the count will base off of.
+        /// </param>
+        /// <returns>
+        /// the integer number of nodes in the tree.
+        /// </returns>
+        public int Count(Node root)
+        {
+            int count = 0; // initialize count of 0.
+
+            // if node is not null
+            if (root != null)
+            {
+                count++; // increase count by 1.
+                count += this.Count(root.LeftChild); // increase count by calling this method on the left child.
+                count += this.Count(root.RightChild); // increase count by calling this method on the right child.
+            }
+
+            return count;
+        }
     }
 }
