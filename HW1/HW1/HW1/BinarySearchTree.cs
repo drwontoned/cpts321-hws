@@ -14,6 +14,7 @@ namespace HW1
     {
         private Node root; // the root node of the tree.
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BinarySearchTree"/> class.
         /// </summary>
@@ -21,6 +22,11 @@ namespace HW1
         {
             this.root = null;
         }
+
+        /// <summary>
+        /// Gets or sets the root of the tree.
+        /// </summary>
+        public Node Root { get => this.root; set => this.root = value; }
 
         /// <summary>
         /// Splits up all of the numbers listed by the user.
@@ -161,7 +167,7 @@ namespace HW1
         }
 
         /// <summary>
-        /// Recursive method that gets the max number of levels in the tree.
+        /// Recursive method that gets the number of levels in the tree.
         /// </summary>
         /// <param name="root">
         /// the node the count will base off of.
@@ -169,15 +175,15 @@ namespace HW1
         /// <returns>
         /// the integer number of max levels in the tree.
         /// </returns>
-        public int MaxLevels(Node root)
+        public int Levels(Node root)
         {
             int levels = 0; // initialize count of 0.
 
             // if node is not null
             if (root != null)
             {
-                int leftLevels = this.MaxLevels(root.LeftChild);
-                int rightLevels = this.MaxLevels(root.RightChild);
+                int leftLevels = this.Levels(root.LeftChild);
+                int rightLevels = this.Levels(root.RightChild);
 
                 if (leftLevels > rightLevels)
                 {
@@ -188,7 +194,30 @@ namespace HW1
                     levels += rightLevels;
                 }
             }
+
             return levels;
+        }
+
+        /// <summary>
+        /// Recursive method that gets the theoretical minimum number of levels in the tree.
+        /// </summary>
+        /// <returns>
+        /// the integer number of theoretical minimum levels in the tree.
+        /// </returns>
+        public int MinLevels()
+        {
+            int count = this.Count(this.root);
+            int min = 0;
+            int currentLevel = 1;
+
+            while (count > 0)
+            {
+                count -= currentLevel;
+                currentLevel *= 2;
+                min++;
+            }
+
+            return min;
         }
     }
 }
