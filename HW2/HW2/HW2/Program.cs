@@ -10,6 +10,9 @@ namespace HW2
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// The main class.
+    /// </summary>
     static class Program
     {
         /// <summary>

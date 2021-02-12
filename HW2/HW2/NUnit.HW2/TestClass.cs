@@ -6,6 +6,7 @@ namespace NUnit.HW2
 {
     using System.Collections;
     using System.Collections.Generic;
+    using global::HW2;
     using NUnit.Framework;
 
     /// <summary>
