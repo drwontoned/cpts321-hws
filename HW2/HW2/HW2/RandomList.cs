@@ -42,5 +42,86 @@ namespace HW2
         {
             return this.list;
         }
+
+        /// <summary>
+        /// Gets number of unique values from a list using a HashSet.
+        /// </summary>
+        /// <param name="list">
+        /// The list of integers to try and get the number of unique values from.
+        /// </param>
+        /// <returns>
+        /// The number of unique values from list.
+        /// </returns>
+        public int HashSetUnique(List<int> list)
+        {
+            HashSet<int> condensed = new HashSet<int>(list); // puts all values from list into hashset
+            return condensed.Count; // return size of hashset
+        }
+
+        /// <summary>
+        /// Gets number of unique values from a list without altering the list and keeoing storage complexity O(1).
+        /// </summary>
+        /// <param name="list">
+        /// The list of integers to try and get the number of unique values from.
+        /// </param>
+        /// <returns>
+        /// The number of unique values from list.
+        /// </returns>
+        public int O1StorageUnique(List<int> list)
+        {
+            int count = 0; // initialize count
+
+            // loop through range of possible values in random
+            for (int i = 0; i <= 20000; i++)
+            {
+                // check if list contains the value i
+                if (list.Contains(i))
+                {
+                    count++; // increase count if list cointains value
+                }
+            }
+
+            return count;
+        }
+
+        /// <summary>
+        /// Gets number of unique values from a list by first sorting the list then parsing through it.
+        /// </summary>
+        /// <param name="list">
+        /// The list of integers to try and get the number of unique values from.
+        /// </param>
+        /// <returns>
+        /// The number of unique values from list.
+        /// </returns>
+        public int SortedUnique(List<int> list)
+        {
+            int count = 0; // initialize count
+            list.Sort(); // sort list from smallest to largest
+
+            // check if list is empty
+            if (list.Count() != 0)
+            {
+                // loop through size of list
+                for (int i = 0; i < list.Count; i++)
+                {
+                    // check if start of list
+                    if (i == 0)
+                    {
+                        count++; // increase count at start of list
+                    }
+
+                    // when past start of list
+                    if (i > 0)
+                    {
+                        // check if previous index in list has same value
+                        if (list[i].CompareTo(list[i - 1]) != 0)
+                        {
+                            count++; // increase count when previous value not the same
+                        }
+                    }
+                }
+            }
+            return count;
+        }
     }
 }

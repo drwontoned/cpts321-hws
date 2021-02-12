@@ -28,7 +28,7 @@ namespace NUnit.HW2
             // test empty list
             Assert.AreEqual(
                 0, // expected value
-                list.HashSet(testList)); // actual value
+                list.HashSetUnique(testList)); // actual value
 
             // test for duplicates added in list
             testList.Add(0);
@@ -36,7 +36,7 @@ namespace NUnit.HW2
 
             Assert.AreEqual(
                 1, // expected value
-                list.HashSet(testList)); // actual value
+                list.HashSetUnique(testList)); // actual value
 
             // test for different integers with duplicates added out of order
             testList.Add(1);
@@ -50,7 +50,7 @@ namespace NUnit.HW2
 
             Assert.AreEqual(
                 5, // expected value
-                list.HashSet(testList)); // actual value
+                list.HashSetUnique(testList)); // actual value
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace NUnit.HW2
             // test empty list
             Assert.AreEqual(
                 0, // expected value
-                list.O1Storage(testList)); // actual value
+                list.O1StorageUnique(testList)); // actual value
 
             // test for duplicates added in list
             testList.Add(0);
@@ -73,7 +73,7 @@ namespace NUnit.HW2
 
             Assert.AreEqual(
                 1, // expected value
-                list.O1Storage(testList)); // actual value
+                list.O1StorageUnique(testList)); // actual value
 
             // test for different integers with duplicates added out of order
             testList.Add(1);
@@ -87,7 +87,7 @@ namespace NUnit.HW2
 
             Assert.AreEqual(
                 5, // expected value
-                list.O1Storage(testList)); // actual value
+                list.O1StorageUnique(testList)); // actual value
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace NUnit.HW2
             // test empty list
             Assert.AreEqual(
                 0, // expected value
-                list.Sorted(testList)); // actual value
+                list.SortedUnique(testList)); // actual value
 
             // test for duplicates added in list
             testList.Add(0);
@@ -110,7 +110,7 @@ namespace NUnit.HW2
 
             Assert.AreEqual(
                 1, // expected value
-                list.Sorted(testList)); // actual value
+                list.SortedUnique(testList)); // actual value
 
             // test for different integers with duplicates added out of order
             testList.Add(1);
@@ -124,7 +124,7 @@ namespace NUnit.HW2
 
             Assert.AreEqual(
                 5, // expected value
-                list.Sorted(testList)); // actual value
+                list.SortedUnique(testList)); // actual value
         }
 
         /// <summary>
@@ -147,9 +147,9 @@ namespace NUnit.HW2
             testList.Add(1);
 
             Assert.AreEqual(
-                list.HashSet(testList), // HashSet method value
-                list.O1Storage(testList), // O1Storage method value
-                list.Sorted(testList)); // Sorted method value
+                list.HashSetUnique(testList), // HashSet method value
+                list.O1StorageUnique(testList), // O1Storage method value
+                list.SortedUnique(testList)); // Sorted method value
         }
     }
 }
