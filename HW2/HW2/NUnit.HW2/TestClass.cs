@@ -1,20 +1,32 @@
-﻿// NUnit 3 tests
-// See documentation : https://github.com/nunit/docs/wiki/NUnit-Documentation
-using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
+﻿// <copyright file="TestClass.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace NUnit.HW2
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using NUnit.Framework;
+
     [TestFixture]
     public class TestClass
     {
         [Test]
-        public void TestMethod()
+        public void HashTest()
         {
-            // TODO: Add your test code here
-            var answer = 42;
-            Assert.That(answer, Is.EqualTo(42), "Some useful error message");
+            
+        }
+
+        [Test]
+        public void O1Test()
+        {
+
+        }
+
+        [Test]
+        public void SortedTest()
+        {
+
         }
     }
 }
