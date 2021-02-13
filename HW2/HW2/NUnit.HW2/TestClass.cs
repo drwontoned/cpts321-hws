@@ -15,7 +15,6 @@ namespace NUnit.HW2
     [TestFixture]
     public class TestClass
     {
-
         /// <summary>
         /// Tests for the HashSet method.
         /// </summary>
