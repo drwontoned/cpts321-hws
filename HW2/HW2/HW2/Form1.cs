@@ -26,6 +26,8 @@ namespace HW2
         public Form1()
         {
             this.InitializeComponent();
+            RandomList list = new RandomList();
+            this.textBox1.Text = list.StringOutput();
         }
 
         /// <summary>

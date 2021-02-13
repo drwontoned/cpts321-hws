@@ -37,14 +37,14 @@
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(482, 453);
+            this.textBox1.Size = new System.Drawing.Size(782, 213);
             this.textBox1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 453);
+            this.ClientSize = new System.Drawing.Size(782, 213);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Kristian Suzara - 011686694";
