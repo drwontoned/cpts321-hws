@@ -124,5 +124,33 @@ namespace HW2
 
             return count;
         }
+
+        /// <summary>
+        /// Method for generating the string output for the window app.
+        /// </summary>
+        /// <returns>
+        /// String output that talks about the 3 different methods for finding unique integers in a list, the amount
+        /// of unique numbers found from each method, and their time complexities.
+        /// </returns>
+        public string StringOutput()
+        {
+            string hashSetOutput =
+                "1. HashSet method: " + this.HashSetUnique(this.list) + " unique numbers " +
+                "\r\n  Time complexity is O(N) for copying the list into a hashset as it needs to parse through the whole list" +
+                "\r\n  and the time complexity is O(1) for returning the HashSet.Count. " +
+                "\r\n  Overall  the O(N) would add up with the O(1) and result in O(N + 1) complexity which simplifies down to O(N).\r\n \r\n";
+
+            string o1Output =
+                "2. O(1) storage method: " + this.O1StorageUnique(this.list) + " unique numbers " +
+                "\r\n  Time complexity is O(2N) for parsing as it parses through the range of possible integers which is double the size of list" +
+                "\r\n  and the time complexity is O(N) for the List.Contains() method within the for loop. " +
+                "\r\n  Overall because O(2N) simplifies down to O(N) and there is an O(N) within it the time complexity of the it all is O(N^2).\r\n \r\n";
+
+            string sortedOutput =
+                "3. Sorted method: " + this.SortedUnique(this.list) + " unique numbers " +
+                "\r\n  Time complexity is O(N) as the List.Sort() can be ignored and there is one for loop parsing through the size of the list n.";
+
+            return hashSetOutput + o1Output + sortedOutput;
+        }
     }
 }
