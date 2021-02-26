@@ -73,5 +73,31 @@ namespace HW3
             return output;
         }
 
+        /// <summary>
+        /// Overriden ReadToEnd Function.
+        /// </summary>
+        /// <returns>
+        /// a string of the full fibonacci sequence based on size given by constructor.
+        /// </returns>
+        public override string ReadToEnd()
+        {
+            // StringBuilder for appending line into a single string
+            StringBuilder builder = new StringBuilder();
+
+            // loop size amount of times to generate the Fibonacci sequence
+            for (int i = 0; i < this.size; i++)
+            {
+                builder.AppendLine(this.ReadLine());
+            }
+
+            // reset first, second, and current value after the size amount of calls to the Readline method.
+            this.first = 0;
+            this.second = 1;
+            this.current = 0;
+
+            // return a string of the Fibonacci sequence
+            return builder.ToString();
+        }
+
     }
 }
