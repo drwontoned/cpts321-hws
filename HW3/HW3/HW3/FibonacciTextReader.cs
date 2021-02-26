@@ -17,7 +17,6 @@ namespace HW3
     /// </summary>
     public class FibonacciTextReader : TextReader
     {
-
         private BigInteger first = 0; // first value in Fibonacci sequence
         private BigInteger second = 1; // second value in Fibonacci sequence
         private BigInteger current = 0; // placeholder that will get updated based on the first and second value
@@ -98,6 +97,5 @@ namespace HW3
             // return a string of the Fibonacci sequence
             return builder.ToString();
         }
-
     }
 }

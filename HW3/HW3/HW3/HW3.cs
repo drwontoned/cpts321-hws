@@ -20,6 +20,7 @@ namespace HW3
         public HW3()
         {
             this.InitializeComponent();
+            this.textBox1.Select();
         }
 
         private void SaveText(FileStream file)
