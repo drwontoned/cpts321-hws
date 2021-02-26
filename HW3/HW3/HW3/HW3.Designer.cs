@@ -1,6 +1,6 @@
 ﻿namespace HW3
 {
-    partial class Form1
+    partial class HW3
     {
         /// <summary>
         /// Required designer variable.
@@ -75,26 +75,30 @@
             this.loadFromFileToolStripMenuItem1.Name = "loadFromFileToolStripMenuItem1";
             this.loadFromFileToolStripMenuItem1.Size = new System.Drawing.Size(320, 26);
             this.loadFromFileToolStripMenuItem1.Text = "Load from file...";
+            this.loadFromFileToolStripMenuItem1.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem1_Click);
             // 
             // loadFibonacciNumbersfirst50ToolStripMenuItem
             // 
             this.loadFibonacciNumbersfirst50ToolStripMenuItem.Name = "loadFibonacciNumbersfirst50ToolStripMenuItem";
             this.loadFibonacciNumbersfirst50ToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
             this.loadFibonacciNumbersfirst50ToolStripMenuItem.Text = "Load Fibonacci numbers (first 50)";
+            this.loadFibonacciNumbersfirst50ToolStripMenuItem.Click += new System.EventHandler(this.loadFibonacciNumbersfirst50ToolStripMenuItem_Click);
             // 
             // loadFibonacciNumbersfirst100ToolStripMenuItem
             // 
             this.loadFibonacciNumbersfirst100ToolStripMenuItem.Name = "loadFibonacciNumbersfirst100ToolStripMenuItem";
             this.loadFibonacciNumbersfirst100ToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
             this.loadFibonacciNumbersfirst100ToolStripMenuItem.Text = "Load Fibonacci numbers (first 100)";
+            this.loadFibonacciNumbersfirst100ToolStripMenuItem.Click += new System.EventHandler(this.loadFibonacciNumbersfirst100ToolStripMenuItem_Click);
             // 
             // saveToFileToolStripMenuItem
             // 
             this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
             this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
             this.saveToFileToolStripMenuItem.Text = "Save to file...";
+            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.saveToFileToolStripMenuItem_Click);
             // 
-            // Form1
+            // HW3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -102,8 +106,9 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "HW3";
+            this.Text = "321 Notepad";
+            this.Load += new System.EventHandler(this.HW3_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
