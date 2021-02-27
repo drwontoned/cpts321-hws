@@ -1,4 +1,4 @@
-﻿// <copyright file="TestClass.cs" company="PlaceholderCompany">
+﻿// <copyright file="HW3Tests.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -15,7 +15,7 @@ namespace NUnit.HW3
     /// Test class where all functionality within program is tested.
     /// </summary>
     [TestFixture]
-    public class TestClass
+    public class HW3Tests
     {
         private HW3 testWindow = new HW3(); // instance of a HW3 win form app to test
 
@@ -48,15 +48,22 @@ namespace NUnit.HW3
                 FileMode.OpenOrCreate,
                 FileAccess.ReadWrite,
                 FileShare.None);
-
             mInfo = this.GetMethod("LoadText"); // get LoadText method from instance of HW3
             mInfo.Invoke(this.testWindow, new object[] { new StreamReader(file) }); // invoke LoadText with a StreamReader of the FileStream
+            file.Close(); // close out of filestream
 
             // Test 1 is dealing with an initially empty text box having text added to it
             // then having that text saved into a file then loading that text back into the text box.
             Assert.AreEqual(
                 testWorked,
                 this.testWindow.ActiveControl.Text);
+
+            // Recreate filestream after it was closed after the LoadText invoke
+            file = new FileStream(
+                path,
+                FileMode.OpenOrCreate,
+                FileAccess.ReadWrite,
+                FileShare.None);
 
             this.testWindow.ActiveControl.Text += " amazing"; // add more text into the text box
             mInfo = this.GetMethod("SaveText"); // get SaveText method from instance of HW3
@@ -101,7 +108,6 @@ namespace NUnit.HW3
             Assert.AreEqual(
                 fib25,
                 this.testWindow.ActiveControl.Text);
-
         }
 
         /// <summary>
