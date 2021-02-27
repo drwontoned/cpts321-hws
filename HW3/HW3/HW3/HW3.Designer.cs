@@ -100,10 +100,6 @@
             this.saveToFileToolStripMenuItem.Text = "Save to file...";
             this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.saveToFileToolStripMenuItem_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // HW3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);

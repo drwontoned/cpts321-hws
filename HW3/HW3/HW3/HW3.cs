@@ -66,12 +66,12 @@ namespace HW3
 
         private void loadFibonacciNumbersfirst50ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.LoadText(new FibonacciTextReader(50));
         }
 
         private void loadFibonacciNumbersfirst100ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.LoadText(new FibonacciTextReader(100));
         }
 
         private void saveToFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,7 +91,6 @@ namespace HW3
 
                 this.SaveText(file); // saves text in textbox into a file
             }
-
         }
     }
 }
