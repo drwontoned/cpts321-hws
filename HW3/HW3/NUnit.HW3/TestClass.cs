@@ -55,15 +55,27 @@ namespace NUnit.HW3
                 testWorked,
                 this.testWindow.ActiveControl.Text);
 
+
+            this.testWindow.ActiveControl.Text += " amazing"; // add more text into the text box
+            mInfo = this.GetMethod("SaveText"); // get SaveText method from instance of HW3
+            mInfo.Invoke(this.testWindow, new object[] { file }); // invoke SaveText with the FileStream
+            file.Close(); // close out of filestream
+            this.testWindow.ActiveControl.Text = string.Empty; // empty the text box
+
+            // Recreate filestream now that SaveText has been invoked
+            file = new FileStream(
+                path,
+                FileMode.OpenOrCreate,
+                FileAccess.ReadWrite,
+                FileShare.None);
+
+            mInfo = this.GetMethod("LoadText"); // get LoadText method from instance of HW3
+            mInfo.Invoke(this.testWindow, new object[] { new StreamReader(file) }); // invoke LoadText with a StreamReader of the FileStream
+
             // Test 2 is dealing with an already filled text box having more text added to it
             // then having that text saved into a file then loading that text back into the text box.
-
-            // Add more text to the already filled text box
-            // Save text to file
-            // Load text into text box
-            // Test to see if the text in text box matches the string created earlier
             Assert.AreEqual(
-                "",
+                testWorked + " amazing",
                 this.testWindow.ActiveControl.Text);
         }
 
