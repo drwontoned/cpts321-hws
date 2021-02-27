@@ -25,12 +25,24 @@ namespace HW3
 
         private void SaveText(FileStream file)
         {
+            StreamWriter sw = new StreamWriter(file); // create a StreamWriter for based on FileStream
+
+            // write text from text box to file using SteamWriter
+            using (sw)
+            {
+                sw.Write(this.textBox1.Text);
+                file.SetLength(file.ToString().Length - 20);
+            }
+
+            file.Close(); // close out of FileStream
+            sw.Close(); // close out of StreamWriter
 
         }
 
         private void LoadText(TextReader sr)
         {
-
+            this.textBox1.Text = sr.ReadToEnd(); // fill in text box with string from ReadToEnd
+            sr.Close(); // close out of TextReader
         }
 
         private void HW3_Load(object sender, EventArgs e)

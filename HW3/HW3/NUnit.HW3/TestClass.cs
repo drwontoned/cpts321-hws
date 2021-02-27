@@ -11,6 +11,9 @@ namespace NUnit.HW3
     using global::HW3;
     using NUnit.Framework;
 
+    /// <summary>
+    /// Test class where all functionality within program is tested.
+    /// </summary>
     [TestFixture]
     public class TestClass
     {
@@ -55,7 +58,6 @@ namespace NUnit.HW3
                 testWorked,
                 this.testWindow.ActiveControl.Text);
 
-
             this.testWindow.ActiveControl.Text += " amazing"; // add more text into the text box
             mInfo = this.GetMethod("SaveText"); // get SaveText method from instance of HW3
             mInfo.Invoke(this.testWindow, new object[] { file }); // invoke SaveText with the FileStream
@@ -85,14 +87,17 @@ namespace NUnit.HW3
         [Test]
         public void TestFibonacci()
         {
+            // fibonacci sequence based to 25
             string fib25 =
                 "1: 0\r\n2: 1\r\n3: 1\r\n4: 2\r\n5: 3\r\n6: 5\r\n7: 8\r\n8: 13\r\n9: 21\r\n10: 34\r\n" +
                 "11: 55\r\n12: 89\r\n13: 144\r\n14: 233\r\n15: 377\r\n16: 610\r\n17: 987\r\n18: 1597\r\n19: 2584\r\n20: 4181\r\n" +
                 "21: 6765\r\n22: 10946\r\n23: 17711\r\n24: 28657\r\n25: 46368\r\n";
 
-            FibonacciTextReader testFib = new FibonacciTextReader(25);
-            MethodInfo mInfo = this.GetMethod("LoadText");
-            mInfo.Invoke(this.testWindow, new object[] { testFib });
+            FibonacciTextReader testFib = new FibonacciTextReader(25); // instance of FibonacciTextReader to 25
+            MethodInfo mInfo = this.GetMethod("LoadText"); // get LoadText method from instance of HW3
+            mInfo.Invoke(this.testWindow, new object[] { testFib }); // invoke LoadText with the testFib
+
+            // test if the strings match up
             Assert.AreEqual(
                 fib25,
                 this.testWindow.ActiveControl.Text);
