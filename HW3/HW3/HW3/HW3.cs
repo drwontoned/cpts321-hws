@@ -52,6 +52,15 @@ namespace HW3
 
         private void loadFromFileToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            this.openFileDialog1.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*"; // filter files such that only .txt files can be seen.
+
+            // check for existance of file.
+            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Stream file = this.openFileDialog1.OpenFile(); // file to be loaded
+                this.LoadText(new StreamReader(file)); // Loads text from file into textbox.
+                file.Close(); // close out of Stream
+            }
 
         }
 
@@ -67,6 +76,21 @@ namespace HW3
 
         private void saveToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.saveFileDialog1.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*"; // filter files such that only .txt files can be saved
+            this.saveFileDialog1.FileName = this.openFileDialog1.FileName;
+
+            // check for existance of file.
+            if (this.saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Create file stream for the file going to be saved
+                FileStream file = new FileStream(
+                    this.saveFileDialog1.FileName,
+                    FileMode.OpenOrCreate,
+                    FileAccess.ReadWrite,
+                    FileShare.None);
+
+                this.SaveText(file); // saves text in textbox into a file
+            }
 
         }
     }
