@@ -70,5 +70,31 @@ namespace NUnit.SpreadsheetTests
                 "wow amazing",
                 testSpreadSheet.GetCell(0, 1).Value);
         }
+
+        /// <summary>
+        /// Test for texts within the cells of the spreadsheet.
+        /// </summary>
+        [Test]
+        public void TestSpreadsheetText()
+        {
+            Spreadsheet testSpreadSheet = new Spreadsheet(5, 5);
+
+            // Test spreadsheet cell text when empty
+            Assert.AreEqual(
+                string.Empty,
+                testSpreadSheet.GetCell(0, 0).Text);
+
+            // Test spreadsheet cell text after text is set on initially empty cell
+            testSpreadSheet.GetCell(0, 0).Text = "wow";
+            Assert.AreEqual(
+                "wow",
+                testSpreadSheet.GetCell(0, 0).Text);
+
+            // Test spreadsheet cell text after more text is added to a non empty cell
+            testSpreadSheet.GetCell(0, 0).Text += " amazing";
+            Assert.AreEqual(
+                "wow amazing",
+                testSpreadSheet.GetCell(0, 0).Text);
+        }
     }
 }
