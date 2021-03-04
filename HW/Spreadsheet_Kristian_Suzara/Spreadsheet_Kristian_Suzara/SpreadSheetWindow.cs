@@ -32,6 +32,15 @@ namespace Spreadsheet_Kristian_Suzara
             {
                 this.dataGridView.Columns.Add(alphabet[i], alphabet[i]);
             }
+
+            // Create rows from 1-50
+            for (int j = 0; j < 50; j++)
+            {
+                string header = (j + 1).ToString();
+                this.dataGridView.Rows.Add();
+                this.dataGridView.Rows[j].HeaderCell.Value = header;
+            }
+
         }
     }
 }
