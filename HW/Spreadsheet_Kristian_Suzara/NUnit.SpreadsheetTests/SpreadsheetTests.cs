@@ -6,6 +6,9 @@ namespace NUnit.SpreadsheetTests
 {
     using System.Collections;
     using System.Collections.Generic;
+    using global::Spreadsheet_Kristian_Suzara;
+    using global::SpreadsheetEngine;
+
     using NUnit.Framework;
 
     /// <summary>
@@ -22,15 +25,15 @@ namespace NUnit.SpreadsheetTests
         {
             Spreadsheet testSpreadSheet = new Spreadsheet(20, 5);
 
-            // Test if the amount of rows is correct.
+            // Test if the number of rows is correct.
             Assert.AreEqual(
                 20,
-                testSpreadSheet.ColumnCount);
+                testSpreadSheet.RowCount);
 
-            // Test if the number of columns is correct.
+            // Test if the amount of columns is correct.
             Assert.AreEqual(
                 5,
-                testSpreadSheet.RowCount);
+                testSpreadSheet.ColumnCount);
         }
 
         /// <summary>
@@ -40,7 +43,6 @@ namespace NUnit.SpreadsheetTests
         public void TestSpreadsheetValue()
         {
             Spreadsheet testSpreadSheet = new Spreadsheet(5, 5);
-
             // Test spreadsheet cell value when empty
             Assert.AreEqual(
                 string.Empty,
@@ -50,6 +52,7 @@ namespace NUnit.SpreadsheetTests
             testSpreadSheet.GetCell(0, 0).Text = "wow";
             Assert.AreEqual(
                 "wow",
+
                 testSpreadSheet.GetCell(0, 0).Value);
 
             // Test spreadsheet cell value after more text is added to a non empty cell
@@ -59,13 +62,13 @@ namespace NUnit.SpreadsheetTests
                 testSpreadSheet.GetCell(0, 0).Value);
 
             // Test spreadsheet cell value when it starts with an '=' and is referencing an empty cell
-            testSpreadSheet.GetCell(0, 1).Text += "=B1";
+            testSpreadSheet.GetCell(4, 4).Text = "=B1";
             Assert.AreEqual(
                 string.Empty,
                 testSpreadSheet.GetCell(0, 1).Value);
 
             // Test spreadsheet cell value when it starts with an '=' and is referencing a non empty cell
-            testSpreadSheet.GetCell(0, 1).Text += "=A1";
+            testSpreadSheet.GetCell(0, 1).Text = "=A1";
             Assert.AreEqual(
                 "wow amazing",
                 testSpreadSheet.GetCell(0, 1).Value);

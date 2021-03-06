@@ -13,17 +13,20 @@ namespace Spreadsheet_Kristian_Suzara
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using SpreadsheetEngine;
 
     /// <summary>
     /// Spreadsheet window class that displays is the winform app.
     /// </summary>
     public partial class SpreadSheetWindow : Form
     {
+        private Spreadsheet formSpreadsheet;
         /// <summary>
         /// Initializes a new instance of the <see cref="SpreadSheetWindow"/> class.
         /// </summary>
         public SpreadSheetWindow()
         {
+            this.formSpreadsheet = new Spreadsheet(50, 26);
             this.InitializeComponent();
 
             // Create collumns from A-Z
@@ -41,6 +44,22 @@ namespace Spreadsheet_Kristian_Suzara
                 this.dataGridView.Rows[j].HeaderCell.Value = header;
             }
 
+            this.formSpreadsheet.CellPropertyChanged += this.CellChanged;
+        }
+
+        /// <summary>
+        /// CellChanged event function.
+        /// </summary>
+        /// <param name="sender">
+        /// object sender.
+        /// </param>
+        /// <param name="e">
+        /// PropertyChangedEventArgs e.
+        /// </param>
+        private void CellChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Cell newCell = (Cell)sender;
+            this.dataGridView[newCell.ColumnIndex, newCell.RowIndex].Value = newCell.Value;
         }
     }
 }

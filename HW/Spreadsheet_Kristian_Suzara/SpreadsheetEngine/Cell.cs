@@ -17,23 +17,24 @@ namespace SpreadsheetEngine
     public abstract class Cell : INotifyPropertyChanged
     {
         // protected strings for text and value
-        protected string text;
-        protected string value;
+        protected string text = string.Empty;
+        protected string value = string.Empty;
 
-        // readonly ints for the column and row index.
-        private readonly int columnIndex;
+        // readonly ints for the row and column index.
         private readonly int rowIndex;
+        private readonly int columnIndex;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cell"/> class.
         /// </summary>
-        /// <param name="column">
-        /// int value for the column index.
-        /// </param>
         /// <param name="row">
         /// int value for the row index.
         /// </param>
-        public Cell(int column, int row)
+        /// <param name="column">
+        /// int value for the column index.
+        /// </param>
+
+        public Cell(int row, int column)
         {
             this.columnIndex = column;
             this.rowIndex = row;
@@ -57,7 +58,7 @@ namespace SpreadsheetEngine
                 if (this.text != value)
                 {
                     this.text = value;
-                    this.PropertyChanged(this, new PropertyChangedEventArgs("Text"));
+                    this.PropertyChanged(this, new PropertyChangedEventArgs(" "));
                 }
 
                 return;

@@ -29,13 +29,13 @@ namespace SpreadsheetEngine
         /// </param>
         public Spreadsheet(int rows, int columns)
         {
-            // Because 2D arrays are [row, column] it is formatted different from cells which are (column, row)
             this.spreadsheet = new SpreadsheetCell[rows, columns];
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    this.spreadsheet[i, j] = new SpreadsheetCell(j, i);
+                    this.spreadsheet[i, j] = new SpreadsheetCell(i, j);
+                    this.spreadsheet[i, j].PropertyChanged += this.TextChanged;
                 }
             }
         }
@@ -79,9 +79,87 @@ namespace SpreadsheetEngine
         /// <returns>
         /// Cell based on the row and column index.
         /// </returns>
-        public Cell GetCell(int column, int row)
+        public Cell GetCell(int row, int column)
         {
             return this.spreadsheet[row, column];
+        }
+
+        /// <summary>
+        /// function for setting value after text changed.
+        /// </summary>
+        /// <param name="sender">
+        /// Object sender will be the cell being dealt with.
+        /// </param>
+        /// <param name="e">
+        /// Property changed event argument.
+        /// </param>
+        public void TextChanged(object sender, PropertyChangedEventArgs e)
+        {
+            SpreadsheetCell cell = (SpreadsheetCell)sender;
+            Console.WriteLine(cell.Text);
+            if (cell.Text.IndexOf('=') != 0)
+            {
+                this.spreadsheet[cell.RowIndex, cell.ColumnIndex].SetValue(cell.Text);
+                Console.WriteLine(this.spreadsheet[cell.RowIndex, cell.ColumnIndex].Value);
+            }
+            else
+            {
+                int row = this.GetRowNumber(cell.Text);
+                int column = this.GetColumnNumber(cell.Text);
+                this.spreadsheet[cell.RowIndex, cell.ColumnIndex].SetValue(this.spreadsheet[row, column].Text);
+                Console.WriteLine(this.spreadsheet[row, column].Value);
+            }
+
+            this.CellPropertyChanged(cell, e);
+        }
+
+        /// <summary>
+        /// Method for getting the row number from an string.
+        /// </summary>
+        /// <param name="s">
+        /// string input that has a row number.
+        /// </param>
+        /// <returns>
+        /// row number converted for the matching value in the 2D array.
+        /// </returns>
+        public int GetRowNumber(string s)
+        {
+            string number = string.Empty;
+            for (int i = 2; i<s.Length; i++)
+            {
+                if (char.IsDigit(s[i]))
+                {
+                    number += s[i];
+                }
+            }
+
+            return int.Parse(number) - 1;
+        }
+
+        /// <summary>
+        /// Method for getting the column number from an string.
+        /// </summary>
+        /// string input that has a column letter.
+        /// </param>
+        /// <returns>
+        /// Column number in the 2D array based on the letter in the string.
+        /// </returns>
+        public int GetColumnNumber(string s)
+        {
+            char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+            int number = 0;
+            for (int i = 1; i < s.Length; i++)
+            {
+                for (int j = 0; j < alphabet.Length; j++)
+                {
+                    if (s[i] == alphabet[j])
+                    {
+                        return j;
+                    }
+                }
+            }
+
+            return number;
         }
 
         /// <summary>
@@ -99,8 +177,8 @@ namespace SpreadsheetEngine
             /// <param name="column">
             /// int column is the index to be set for columnINdex.
             /// </param>
-            public SpreadsheetCell(int column, int row)
-                : base(column, row)
+            public SpreadsheetCell(int row, int column)
+                : base(row, column)
             {
             }
 

@@ -47,6 +47,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SpreadsheetEngine\SpreadsheetEngine.csproj">
+      <Project>{4991e7b0-e1b4-4444-be93-f54343b418c7}</Project>
+      <Name>SpreadsheetEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadsheet_Kristian_Suzara\Spreadsheet_Kristian_Suzara.csproj">
       <Project>{29fda851-f35f-4821-8870-190f8e1c1807}</Project>
       <Name>Spreadsheet_Kristian_Suzara</Name>

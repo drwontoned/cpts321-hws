@@ -1,4 +1,8 @@
-﻿namespace Spreadsheet_Kristian_Suzara
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Spreadsheet_Kristian_Suzara
 {
     using System;
     using System.Collections.Generic;
