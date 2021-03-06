@@ -11,6 +11,30 @@ namespace SpreadsheetEngine
     /// </summary>
     public class Spreadsheet
     {
+        private readonly SpreadsheetCell[,] spreadsheet;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Spreadsheet"/> class.
+        /// </summary>
+        /// <param name="rows">
+        /// int rows is number of rows for the Spreadsheet.
+        /// </param>
+        /// <param name="columns">
+        /// int columns is the number of columns for this spreadsheet.
+        /// </param>
+        public Spreadsheet(int rows, int columns)
+        {
+            // because 2d arrays are [row, column] it is formatted different from cells which are (column, row)
+            this.spreadsheet = new SpreadsheetCell[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    this.spreadsheet[i, j] = new SpreadsheetCell(j, i);
+                }
+            }
+        }
+
         /// <summary>
         /// Cell class for the spreadsheet.
         /// </summary>
