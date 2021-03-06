@@ -43,6 +43,7 @@ namespace NUnit.SpreadsheetTests
         public void TestSpreadsheetValue()
         {
             Spreadsheet testSpreadSheet = new Spreadsheet(5, 5);
+
             // Test spreadsheet cell value when empty
             Assert.AreEqual(
                 string.Empty,
@@ -52,7 +53,6 @@ namespace NUnit.SpreadsheetTests
             testSpreadSheet.GetCell(0, 0).Text = "wow";
             Assert.AreEqual(
                 "wow",
-
                 testSpreadSheet.GetCell(0, 0).Value);
 
             // Test spreadsheet cell value after more text is added to a non empty cell

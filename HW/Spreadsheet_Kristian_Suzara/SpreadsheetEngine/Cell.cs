@@ -16,9 +16,19 @@ namespace SpreadsheetEngine
     /// </summary>
     public abstract class Cell : INotifyPropertyChanged
     {
-        // protected strings for text and value
+        /// <summary>
+        /// protected text of a cell.
+        /// </summary>
+#pragma warning disable SA1401 // Fields should be private
         protected string text = string.Empty;
+#pragma warning restore SA1401 // Fields should be private
+
+        /// <summary>
+        /// Protected value of a cell.
+        /// </summary>
+#pragma warning disable SA1401 // Fields should be private
         protected string value = string.Empty;
+#pragma warning restore SA1401 // Fields should be private
 
         // readonly ints for the row and column index.
         private readonly int rowIndex;
@@ -33,7 +43,6 @@ namespace SpreadsheetEngine
         /// <param name="column">
         /// int value for the column index.
         /// </param>
-
         public Cell(int row, int column)
         {
             this.columnIndex = column;

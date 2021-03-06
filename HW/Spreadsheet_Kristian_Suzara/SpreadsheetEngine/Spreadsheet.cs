@@ -70,11 +70,11 @@ namespace SpreadsheetEngine
         /// <summary>
         /// Gets Cell based on the column and row that was input into function.
         /// </summary>
-        /// <param name="column">
-        /// int column is the column index of row from 2D array spreadsheet.
-        /// </param>
         /// <param name="row">
         /// int row is the row index of row from 2D array spreadsheet.
+        /// </param>
+        /// <param name="column">
+        /// int column is the column index of row from 2D array spreadsheet.
         /// </param>
         /// <returns>
         /// Cell based on the row and column index.
@@ -96,18 +96,20 @@ namespace SpreadsheetEngine
         public void TextChanged(object sender, PropertyChangedEventArgs e)
         {
             SpreadsheetCell cell = (SpreadsheetCell)sender;
-            Console.WriteLine(cell.Text);
+
+            // If first char in the string is not '=' then just set the value to the text.
             if (cell.Text.IndexOf('=') != 0)
             {
                 this.spreadsheet[cell.RowIndex, cell.ColumnIndex].SetValue(cell.Text);
-                Console.WriteLine(this.spreadsheet[cell.RowIndex, cell.ColumnIndex].Value);
             }
+
+            // Otherwise set the value to the text of the cell the string is referring to.
             else
             {
-                int row = this.GetRowNumber(cell.Text);
-                int column = this.GetColumnNumber(cell.Text);
-                this.spreadsheet[cell.RowIndex, cell.ColumnIndex].SetValue(this.spreadsheet[row, column].Text);
-                Console.WriteLine(this.spreadsheet[row, column].Value);
+                int row = this.GetRowNumber(cell.Text); // the row number based on string input
+                int column = this.GetColumnNumber(cell.Text); // the column number based on string input
+                this.spreadsheet[cell.RowIndex, cell.ColumnIndex]
+                    .SetValue(this.spreadsheet[row, column].Text); // set this current cell's value to the text of cell being referred to.
             }
 
             this.CellPropertyChanged(cell, e);
@@ -124,8 +126,11 @@ namespace SpreadsheetEngine
         /// </returns>
         public int GetRowNumber(string s)
         {
+            // Empty string that will have the number ampended to it.
             string number = string.Empty;
-            for (int i = 2; i<s.Length; i++)
+
+            // Loop through string and if the char at an index is a number append it to number.
+            for (int i = 2; i < s.Length; i++)
             {
                 if (char.IsDigit(s[i]))
                 {
@@ -133,12 +138,14 @@ namespace SpreadsheetEngine
                 }
             }
 
+            // Return the row number - 1 so that it is not out of bounds of the 2D array.
             return int.Parse(number) - 1;
         }
 
         /// <summary>
         /// Method for getting the column number from an string.
         /// </summary>
+        /// <param name="s">
         /// string input that has a column letter.
         /// </param>
         /// <returns>
@@ -146,19 +153,24 @@ namespace SpreadsheetEngine
         /// </returns>
         public int GetColumnNumber(string s)
         {
+            // Array of all the letters in the alphabet.
             char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-            int number = 0;
+
+            int number = 0; // integer for the column number.
+
+            // Loop through the string and check if the char at that index of the string matches one of the letters in alphabet.
             for (int i = 1; i < s.Length; i++)
             {
                 for (int j = 0; j < alphabet.Length; j++)
                 {
                     if (s[i] == alphabet[j])
                     {
-                        return j;
+                        number = j;
                     }
                 }
             }
 
+            // Return the column number.
             return number;
         }
 
