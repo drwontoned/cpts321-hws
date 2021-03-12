@@ -43,6 +43,57 @@ namespace CptS321
             {
                 List<string> nodeStringList = this.SplitExpression(expression); // Break up expression into a list of strings.
                 nodeStringList = this.ToPostFix(nodeStringList); // Order the expression into postfix.
+                Stack<TreeNode> nodeStack = new Stack<TreeNode>();
+
+                // Loop through the list of strings that are in postfix.
+                for (int i = 0; i < nodeStringList.Count; i++)
+                {
+                    string current = nodeStringList.ElementAt(i);
+
+                    // If the first char of the string is a letter or digit then we know its a variable or value.
+                    if (char.IsLetterOrDigit(current[0]))
+                    {
+                        // If it is a value.
+                        if (char.IsDigit(current[0]))
+                        {
+                            // Then create a ValueNode based on current string and push to the stack.
+                            nodeStack.Push(this.factory.CreateNode(current));
+                        }
+
+                        // Otherwise it is a variable.
+                        else
+                        {
+                            // Create a VariableNode based on current string and push to the stack.
+                            nodeStack.Push(this.factory.CreateNode(current));
+
+                            // If the dictionary does not already contain this variable.
+                            if (!this.variableDictionary.ContainsKey(current))
+                            {
+                                // Then add this variable to the dictionary with a value of 0.
+                                this.variableDictionary.Add(current, 0.0);
+                            }
+                        }
+                    }
+
+                    // Otherwise we know it is an operator.
+                    else
+                    {
+                        // Set current OperatorNode
+                        OperatorNode currentOperator = this.factory.CreateNode(current) as OperatorNode;
+
+                        // Pop out a Tree node from the stack and set current OperatorNodes right child.
+                        currentOperator.RightChild = nodeStack.Pop() as TreeNode;
+
+                        // Pop out a Tree node from the stack and set current OperatorNodes left child.
+                        currentOperator.LeftChild = nodeStack.Pop() as TreeNode;
+
+                        // Push the operator into the stack.
+                        nodeStack.Push(currentOperator);
+                    }
+                }
+
+                // Set this ExpressionTrees root to the node at the top of the stack.
+                this.root = nodeStack.Peek();
             }
         }
 
@@ -150,6 +201,16 @@ namespace CptS321
 
             // Return the new postfix expression list.
             return nodeStringList;
+        }
+
+        /// <summary>
+        /// Gets a string expression.
+        /// </summary>
+        public string Expression { get => this.expression; }
+
+        public double GetVariableValue(string variable)
+        {
+            return this.variableDictionary[variable];
         }
     }
 }

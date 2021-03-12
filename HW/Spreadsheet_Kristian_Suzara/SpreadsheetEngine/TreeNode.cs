@@ -10,6 +10,9 @@ namespace CptS321
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Abstract node class that all of the nodes in the ExpressionTree will inherit from.
+    /// </summary>
     public abstract class TreeNode
     {
     }

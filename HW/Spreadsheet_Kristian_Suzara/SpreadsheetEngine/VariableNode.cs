@@ -10,6 +10,9 @@ namespace CptS321
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Node class for variables.
+    /// </summary>
     public class VariableNode : TreeNode
     {
         private string variable;
