@@ -143,7 +143,14 @@ namespace NUnit.ExpressionTests
             testTree.SetVariable("B", -10.0);
             Assert.AreEqual(
                 -15.0, 
-                testTree.Evaluate()); 
+                testTree.Evaluate());
+
+            // test normal addition between a positive variable and a negative variable
+            testTree.SetVariable("A", 5.0);
+            testTree.SetVariable("B", -10.0);
+            Assert.AreEqual(
+                -5.0,
+                testTree.Evaluate());
 
             // test normal addition between a negative variable and a positive variable
             testTree.SetVariable("A", -5.0);
@@ -171,7 +178,15 @@ namespace NUnit.ExpressionTests
             testTree.SetVariable("B", double.MinValue);
             Assert.AreEqual(
                 0, 
-                testTree.Evaluate()); 
+                testTree.Evaluate());
+
+            // test addition between a variable at min value and a variable at max value
+            testTree.SetVariable("A", double.MinValue);
+            testTree.SetVariable("B", double.MaxValue);
+            Assert.AreEqual(
+                0,
+                testTree.Evaluate());
+
 
             // test addition between two variables at positive infinity
             testTree.SetVariable("A", double.PositiveInfinity);
@@ -192,6 +207,148 @@ namespace NUnit.ExpressionTests
             testTree.SetVariable("B", double.NegativeInfinity);
             Assert.AreEqual(
                 double.NaN,
+                testTree.Evaluate());
+
+            // test addition between a variable at negative infinity and a variable at positive infinity
+            testTree.SetVariable("A", double.NegativeInfinity);
+            testTree.SetVariable("B", double.PositiveInfinity);
+            Assert.AreEqual(
+                double.NaN,
+                testTree.Evaluate());
+        }
+
+        /// <summary>
+        /// Test ExpressionTree subtraction from evaluate.
+        /// </summary>
+        [Test]
+        public void TestExpressionTreeSub()
+        {
+            // test normal subtraction between two values
+            ExpressionTree testTree = new ExpressionTree("5-5");
+            Assert.AreEqual(
+                0.0,
+                testTree.Evaluate());
+
+            // test normal subtraction between a positive variable and a value
+            testTree = new ExpressionTree("A-15");
+            testTree.SetVariable("A1", 5.0);
+            Assert.AreEqual(
+                -10.0,
+                testTree.Evaluate());
+
+            // test normal subtraction between a negative variable and a value
+            testTree.SetVariable("A1", -5.0);
+            Assert.AreEqual(
+                -20.0,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at max value and a value
+            testTree.SetVariable("A1", double.MaxValue);
+            Assert.AreEqual(
+                double.MaxValue,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at min value and a value
+            testTree.SetVariable("A1", double.MinValue);
+            Assert.AreEqual(
+                double.MinValue,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at positive infinity and a value
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at negatuve infinity and a value
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+
+            // test normal subtraction between a positive variable and a positive variable
+            testTree = new ExpressionTree("A-B");
+            testTree.SetVariable("A", 5.0);
+            testTree.SetVariable("B", 10.0);
+            Assert.AreEqual(
+                -5.0,
+                testTree.Evaluate());
+
+            // test normal subtraction between a negative variable and a negative variable
+            testTree.SetVariable("A", -5.0);
+            testTree.SetVariable("B", -10.0);
+            Assert.AreEqual(
+                5.0,
+                testTree.Evaluate());
+
+            // test normal subtraction between a positive variable and a negative variable
+            testTree.SetVariable("A", 5.0);
+            testTree.SetVariable("B", -10.0);
+            Assert.AreEqual(
+                15.0,
+                testTree.Evaluate());
+
+            // test normal subtraction between a negative variable and a positive variable
+            testTree.SetVariable("A", -5.0);
+            testTree.SetVariable("B", 10.0);
+            Assert.AreEqual(
+                -15.0,
+                testTree.Evaluate());
+
+            // test subtraction between two variables at max value
+            testTree.SetVariable("A", double.MaxValue);
+            testTree.SetVariable("B", double.MaxValue);
+            Assert.AreEqual(
+                0,
+                testTree.Evaluate());
+
+            // test subtraction between two variables at min value
+            testTree.SetVariable("A", double.MinValue);
+            testTree.SetVariable("B", double.MinValue);
+            Assert.AreEqual(
+                0,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at max value and a variable at min value
+            testTree.SetVariable("A", double.MaxValue);
+            testTree.SetVariable("B", double.MinValue);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at min value and a variable at max value
+            testTree.SetVariable("A", double.MinValue);
+            testTree.SetVariable("B", double.MaxValue);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+
+            // test subtraction between two variables at positive infinity
+            testTree.SetVariable("A", double.PositiveInfinity);
+            testTree.SetVariable("B", double.PositiveInfinity);
+            Assert.AreEqual(
+                double.NaN,
+                testTree.Evaluate());
+
+            // test subtraction between two variables at negative infinity
+            testTree.SetVariable("A", double.NegativeInfinity);
+            testTree.SetVariable("B", double.NegativeInfinity);
+            Assert.AreEqual(
+                double.NaN,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at positive infinity and a variable at negative infinity
+            testTree.SetVariable("A", double.PositiveInfinity);
+            testTree.SetVariable("B", double.NegativeInfinity);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test subtraction between a variable at negative infinity and a variable at positive infinity
+            testTree.SetVariable("A", double.NegativeInfinity);
+            testTree.SetVariable("B", double.PositiveInfinity);
+            Assert.AreEqual(
+                double.NegativeInfinity,
                 testTree.Evaluate());
         }
     }
