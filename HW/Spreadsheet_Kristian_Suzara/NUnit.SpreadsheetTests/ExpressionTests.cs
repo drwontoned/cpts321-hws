@@ -351,5 +351,141 @@ namespace NUnit.ExpressionTests
                 double.NegativeInfinity,
                 testTree.Evaluate());
         }
+
+        /// <summary>
+        /// Test ExpressionTree multiplication from evaluate.
+        /// </summary>
+        [Test]
+        public void TestExpressionTreeMul()
+        {
+            // test normal multiplication between two values
+            ExpressionTree testTree = new ExpressionTree("5*5");
+            Assert.AreEqual(
+                25.0,
+                testTree.Evaluate());
+
+            // test normal multiplication between a positive variable and a value
+            testTree = new ExpressionTree("A*15");
+            testTree.SetVariable("A1", 5.0);
+            Assert.AreEqual(
+                75.0,
+                testTree.Evaluate());
+
+            // test normal multiplication between a negative variable and a value
+            testTree.SetVariable("A1", -5.0);
+            Assert.AreEqual(
+                -75.0,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at max value and a value
+            testTree.SetVariable("A1", double.MaxValue);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at min value and a value
+            testTree.SetVariable("A1", double.MinValue);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at positive infinity and a value
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at negatuve infinity and a value
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+
+            // test normal multiplication between a positive variable and a positive variable
+            testTree = new ExpressionTree("A*B");
+            testTree.SetVariable("A", 5.0);
+            testTree.SetVariable("B", 10.0);
+            Assert.AreEqual(
+                50.0,
+                testTree.Evaluate());
+
+            // test normal multiplication between a negative variable and a negative variable
+            testTree.SetVariable("A", -5.0);
+            testTree.SetVariable("B", -10.0);
+            Assert.AreEqual(
+                50.0,
+                testTree.Evaluate());
+
+            // test normal multiplication between a positive variable and a negative variable
+            testTree.SetVariable("A", 5.0);
+            testTree.SetVariable("B", -10.0);
+            Assert.AreEqual(
+                -50.0,
+                testTree.Evaluate());
+
+            // test normal multiplication between a negative variable and a positive variable
+            testTree.SetVariable("A", -5.0);
+            testTree.SetVariable("B", 10.0);
+            Assert.AreEqual(
+                -50.0,
+                testTree.Evaluate());
+
+            // test multiplication between two variables at max value
+            testTree.SetVariable("A", double.MaxValue);
+            testTree.SetVariable("B", double.MaxValue);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between two variables at min value
+            testTree.SetVariable("A", double.MinValue);
+            testTree.SetVariable("B", double.MinValue);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at max value and a variable at min value
+            testTree.SetVariable("A", double.MaxValue);
+            testTree.SetVariable("B", double.MinValue);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at min value and a variable at max value
+            testTree.SetVariable("A", double.MinValue);
+            testTree.SetVariable("B", double.MaxValue);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+
+
+            // test multiplication between two variables at positive infinity
+            testTree.SetVariable("A", double.PositiveInfinity);
+            testTree.SetVariable("B", double.PositiveInfinity);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between two variables at negative infinity
+            testTree.SetVariable("A", double.NegativeInfinity);
+            testTree.SetVariable("B", double.NegativeInfinity);
+            Assert.AreEqual(
+                double.PositiveInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at positive infinity and a variable at negative infinity
+            testTree.SetVariable("A", double.PositiveInfinity);
+            testTree.SetVariable("B", double.NegativeInfinity);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+
+            // test multiplication between a variable at negative infinity and a variable at positive infinity
+            testTree.SetVariable("A", double.NegativeInfinity);
+            testTree.SetVariable("B", double.PositiveInfinity);
+            Assert.AreEqual(
+                double.NegativeInfinity,
+                testTree.Evaluate());
+        }
     }
 }
