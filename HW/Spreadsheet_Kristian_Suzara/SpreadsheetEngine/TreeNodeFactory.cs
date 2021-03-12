@@ -33,19 +33,19 @@ namespace CptS321
         /// </returns>
         public TreeNode CreateNode(string node)
         {
-            // create a value node if the string starts with a digit.
+            // Create a value node if the string starts with a digit.
             if (char.IsDigit(node[0]))
             {
                 return new ValueNode(Convert.ToDouble(node));
             }
 
-            // create a variable node if the string starts with a letter
+            // Create a variable node if the string starts with a letter
             else if (char.IsLetter(node[0]))
             {
                 return new VariableNode(node);
             }
 
-            // create an operator node if it does not start with a digit or letter.
+            // Create an operator node if it does not start with a digit or letter.
             return new OperatorNode(node[0]);
         }
     }
