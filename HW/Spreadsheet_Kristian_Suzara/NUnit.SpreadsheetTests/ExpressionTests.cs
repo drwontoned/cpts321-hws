@@ -23,7 +23,7 @@ namespace NUnit.ExpressionTests
         [Test]
         public void TestChangeExpression()
         {
-            ExpressionTree testTree = new ExpressionTree("A+1+B+2"); 
+            ExpressionTree testTree = new ExpressionTree("A+1+B+2");
 
             // Test initial expression
             Assert.AreEqual(
@@ -51,34 +51,34 @@ namespace NUnit.ExpressionTests
                 testTree.GetVariableValue("A"));
 
             // Test value of a variable after it is set
-            testTree.SetVariable("A", 5,0);
+            testTree.SetVariable("A", 5.0);
             Assert.AreEqual(
                5.0,
-                testTree.GetVariableValue("A"));
+               testTree.GetVariableValue("A"));
 
             // Test value if value is just over the MaxValue (should just round down to max)
             testTree.SetVariable("A", double.MaxValue + 5);
             Assert.AreEqual(
                double.MaxValue,
-                testTree.GetVariableValue("A"));
+               testTree.GetVariableValue("A"));
 
             // Test value if value is much larger than MaxValue (should be positive infinity)
             testTree.SetVariable("A", double.MaxValue * 5);
             Assert.AreEqual(
                double.PositiveInfinity,
-                testTree.GetVariableValue("A"));
+               testTree.GetVariableValue("A"));
 
             // Test value if value is just over the MinValue (should just round up to min)
             testTree.SetVariable("A", double.MinValue - 5);
             Assert.AreEqual(
                double.MinValue,
-                testTree.GetVariableValue("A"));
+               testTree.GetVariableValue("A"));
 
             // Test value if value is much larger than MinValue (should be negative infinity)
             testTree.SetVariable("A", double.MinValue * 5);
             Assert.AreEqual(
                double.NegativeInfinity,
-                testTree.GetVariableValue("A"));
+               testTree.GetVariableValue("A"));
         }
 
         /// <summary>
@@ -186,7 +186,6 @@ namespace NUnit.ExpressionTests
             Assert.AreEqual(
                 0,
                 testTree.Evaluate());
-
 
             // test addition between two variables at positive infinity
             testTree.SetVariable("A1", double.PositiveInfinity);
@@ -458,7 +457,6 @@ namespace NUnit.ExpressionTests
                 double.NegativeInfinity,
                 testTree.Evaluate());
 
-
             // test multiplication between two variables at positive infinity
             testTree.SetVariable("A1", double.PositiveInfinity);
             testTree.SetVariable("B1", double.PositiveInfinity);
@@ -516,13 +514,13 @@ namespace NUnit.ExpressionTests
             // test division between a variable at max value and a value
             testTree.SetVariable("A1", double.MaxValue);
             Assert.AreEqual(
-                (double.MaxValue / 10),
+                double.MaxValue / 10,
                 testTree.Evaluate());
 
             // test division between a variable at min value and a value
             testTree.SetVariable("A1", double.MinValue);
             Assert.AreEqual(
-                (double.MinValue / 10),
+                double.MinValue / 10,
                 testTree.Evaluate());
 
             // test division between a variable at positive infinity and a value
@@ -593,7 +591,6 @@ namespace NUnit.ExpressionTests
             Assert.AreEqual(
                 -1,
                 testTree.Evaluate());
-
 
             // test division between two variables at positive infinity
             testTree.SetVariable("A1", double.PositiveInfinity);
