@@ -32,5 +32,16 @@ namespace CptS321
         /// Gets value.
         /// </summary>
         public double Value { get => this.value; }
+
+        /// <summary>
+        /// Method that evaluates this node.
+        /// </summary>
+        /// <returns>
+        /// the value of this node.
+        /// </returns>
+        public override double Evaluate()
+        {
+            return this.Value;
+        }
     }
 }

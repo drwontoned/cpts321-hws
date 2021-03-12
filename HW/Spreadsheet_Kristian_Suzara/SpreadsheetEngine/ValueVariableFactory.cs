@@ -1,4 +1,4 @@
-﻿// <copyright file="TreeNodeFactory.cs" company="PlaceholderCompany">
+﻿// <copyright file="ValueVariableFactory.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -13,12 +13,12 @@ namespace CptS321
     /// <summary>
     /// Factory class that creates different types of TreeNodes.
     /// </summary>
-    public class TreeNodeFactory
+    public class ValueVariableFactory
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TreeNodeFactory"/> class.
+        /// Initializes a new instance of the <see cref="ValueVariableFactory"/> class.
         /// </summary>
-        public TreeNodeFactory()
+        public ValueVariableFactory()
         {
         }
 
@@ -39,14 +39,8 @@ namespace CptS321
                 return new ValueNode(Convert.ToDouble(node));
             }
 
-            // Create a variable node if the string starts with a letter
-            else if (char.IsLetter(node[0]))
-            {
-                return new VariableNode(node);
-            }
-
-            // Create an operator node if it does not start with a digit or letter.
-            return new OperatorNode(node[0]);
+            // Create a variableNode otherwise.
+            return new VariableNode(node);
         }
     }
 }

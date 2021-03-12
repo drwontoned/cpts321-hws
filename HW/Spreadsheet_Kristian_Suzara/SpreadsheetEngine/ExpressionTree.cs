@@ -17,7 +17,8 @@ namespace CptS321
     {
         private readonly TreeNode root;
         private readonly Dictionary<string, double> variableDictionary = new Dictionary<string, double>();
-        private TreeNodeFactory factory = new TreeNodeFactory();
+        private ValueVariableFactory factory = new ValueVariableFactory();
+        private OperatorFactory opFactory = new OperatorFactory();
         private string expression;
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace CptS321
                     else
                     {
                         // Set current OperatorNode
-                        OperatorNode currentOperator = this.factory.CreateNode(current) as OperatorNode;
+                        OperatorNode currentOperator = this.opFactory.CreateOperatorNode(current);
 
                         // Pop out a Tree node from the stack and set current OperatorNodes right child.
                         currentOperator.RightChild = nodeStack.Pop() as TreeNode;
@@ -96,6 +97,11 @@ namespace CptS321
                 this.root = nodeStack.Peek();
             }
         }
+
+        /// <summary>
+        /// Gets a string expression.
+        /// </summary>
+        public string Expression { get => this.expression; }
 
         /// <summary>
         /// Method for breaking up the expression into a list of smaller strings that can be looked at with the factory to create TreeNodes.
@@ -116,8 +122,15 @@ namespace CptS321
             {
                 char current = expression[i];
 
-                // If current char is an operator.
-                if (current == '+' || current == '-' || current == '*' || current == '/')
+                // If current char is a letter or digit.
+                if (char.IsLetterOrDigit(current))
+                {
+                    // Add current char to the nodeString.
+                    nodeString += current;
+                }
+
+                // otherwise it is an operator or parenthesis.
+                else
                 {
                     // If the nodeString is not empty.
                     if (nodeString != string.Empty)
@@ -129,15 +142,8 @@ namespace CptS321
                     // Reset the nodeString.
                     nodeString = string.Empty;
 
-                    // Add the current char(which should be an operator) as a string to the list.
+                    // Add the current char as a string to the list.
                     nodeStringList.Add(current.ToString());
-                }
-
-                // If current char is not an operator.
-                else
-                {
-                    // Add current char to the nodeString.
-                    nodeString += current;
                 }
             }
 
@@ -204,13 +210,42 @@ namespace CptS321
         }
 
         /// <summary>
-        /// Gets a string expression.
+        /// Gets value from dictionary based on the variable key.
         /// </summary>
-        public string Expression { get => this.expression; }
-
-        public double GetVariableValue(string variable)
+        /// <param name="variableName">
+        /// The key for the dictionary value.
+        /// </param>
+        /// <returns>
+        /// The double value from the dictionary.
+        /// </returns>
+        public double GetVariableValue(string variableName)
         {
-            return this.variableDictionary[variable];
+            return this.variableDictionary[variableName];
+        }
+
+        /// <summary>
+        /// Method for setting the variable value in the dictionary.
+        /// </summary>
+        /// <param name="variableName">
+        /// The variable name and key.
+        /// </param>
+        /// <param name="variableValue">
+        /// The variable value.
+        /// </param>
+        public void SetVariable(string variableName, double variableValue)
+        {
+            this.variableDictionary[variableName] = variableValue;
+        }
+
+        /// <summary>
+        /// Method that evaluates the expression by going down and evaluating each node in the tree starting from the root.
+        /// </summary>
+        /// <returns>
+        /// The evaluated value of the ExpressionTree.
+        /// </returns>
+        public double Evaluate()
+        {
+            return this.root.Evaluate();
         }
     }
 }

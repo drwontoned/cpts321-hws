@@ -15,5 +15,12 @@ namespace CptS321
     /// </summary>
     public abstract class TreeNode
     {
+        /// <summary>
+        /// Abstract method for evaluating a node.
+        /// </summary>
+        /// <returns>
+        /// A double value.
+        /// </returns>
+        public abstract double Evaluate();
     }
 }

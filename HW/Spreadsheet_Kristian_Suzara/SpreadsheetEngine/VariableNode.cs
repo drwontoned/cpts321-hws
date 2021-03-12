@@ -15,22 +15,33 @@ namespace CptS321
     /// </summary>
     public class VariableNode : TreeNode
     {
-        private string variable;
+        private double value;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VariableNode"/> class.
         /// </summary>
-        /// <param name="variable">
+        /// <param name="value">
         /// The variable name of this node.
         /// </param>
-        public VariableNode(string variable)
+        public VariableNode(double value)
         {
-            this.variable = variable;
+            this.value = value;
         }
 
         /// <summary>
         /// Gets Variable name.
         /// </summary>
-        public string Variable { get => this.variable; }
+        public double Value { get => this.value; }
+
+        /// <summary>
+        /// Method that evaluates this node.
+        /// </summary>
+        /// <returns>
+        /// the value of this node.
+        /// </returns>
+        public override double Evaluate()
+        {
+            return this.Value;
+        }
     }
 }

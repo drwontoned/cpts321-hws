@@ -13,27 +13,10 @@ namespace CptS321
     /// <summary>
     /// Node class for operators.
     /// </summary>
-    public class OperatorNode : TreeNode
+    public abstract class OperatorNode : TreeNode
     {
-        private char operatorType;
         private TreeNode rightChild = null;
         private TreeNode leftChild = null;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OperatorNode"/> class.
-        /// </summary>
-        /// <param name="operatorType">
-        /// The type of operator of this node.
-        /// </param>
-        public OperatorNode(char operatorType)
-        {
-            this.operatorType = operatorType;
-        }
-
-        /// <summary>
-        /// Gets operatorType.
-        /// </summary>
-        public char OperatorType { get => this.operatorType; }
 
         /// <summary>
         /// Gets or sets for RightChild.
