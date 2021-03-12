@@ -36,5 +36,49 @@ namespace NUnit.ExpressionTests
                 "C-3-D-4",
                 testTree.Expression);
         }
+
+        /// <summary>
+        /// Test if variable value gets set.
+        /// </summary>
+        [Test]
+        public void TestSetVariable()
+        {
+            ExpressionTree testTree = new ExpressionTree("A+1");
+
+            // Test value of a variable before it is set by pulling it from dictionary
+            Assert.AreEqual(
+                0.0,
+                testTree.GetVariableValue("A"));
+
+            // Test value of a variable after it is set
+            testTree.SetVariable("A", 5,0);
+            Assert.AreEqual(
+               5.0,
+                testTree.GetVariableValue("A"));
+
+            // Test value if value is just over the MaxValue (should just round down to max)
+            testTree.SetVariable("A", double.MaxValue + 5);
+            Assert.AreEqual(
+               double.MaxValue,
+                testTree.GetVariableValue("A"));
+
+            // Test value if value is much larger than MaxValue (should be positive infinity)
+            testTree.SetVariable("A", double.MaxValue * 5);
+            Assert.AreEqual(
+               double.PositiveInfinity,
+                testTree.GetVariableValue("A"));
+
+            // Test value if value is just over the MinValue (should just round up to min)
+            testTree.SetVariable("A", double.MinValue - 5);
+            Assert.AreEqual(
+               double.MinValue,
+                testTree.GetVariableValue("A"));
+
+            // Test value if value is much larger than MinValue (should be negative infinity)
+            testTree.SetVariable("A", double.MinValue * 5);
+            Assert.AreEqual(
+               double.NegativeInfinity,
+                testTree.GetVariableValue("A"));
+        }
     }
 }
