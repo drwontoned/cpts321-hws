@@ -17,6 +17,8 @@ namespace CptS321
     {
         private readonly TreeNode root;
         private readonly Dictionary<string, double> variableDictionary = new Dictionary<string, double>();
+        private TreeNodeFactory factory = new TreeNodeFactory();
+        private string expression;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpressionTree"/> class.
@@ -26,7 +28,46 @@ namespace CptS321
         /// </param>
         public ExpressionTree(string expression)
         {
+            this.expression = expression;
+            if (expression == string.Empty)
+            {
+                this.root = null;
+            }
+        }
 
+        /// <summary>
+        /// Method for breaking up the expression into a list of smaller strings that can be looked at with the factory to create TreeNodes.
+        /// </summary>
+        /// <param name="expression">
+        /// The expression getting broken down.
+        /// </param>
+        /// <returns>
+        /// A list of strings representing values, variables, and operators.
+        /// </returns>
+        public List<string> SplitExpression(string expression)
+        {
+            List<string> nodeStringList = new List<string>();
+            string nodeString = string.Empty;
+            for (int i = 0; i < expression.Length; i++)
+            {
+                char current = expression[i];
+                if (current == '+' || current == '-' || current == '*' || current == '/')
+                {
+                    if (nodeString != string.Empty)
+                    {
+                        nodeStringList.Add(nodeString);
+                    }
+
+                    nodeString = string.Empty;
+                    nodeStringList.Add(current.ToString());
+                }
+                else
+                {
+                    nodeString += current;
+                }
+            }
+
+            return nodeStringList;
         }
     }
 }

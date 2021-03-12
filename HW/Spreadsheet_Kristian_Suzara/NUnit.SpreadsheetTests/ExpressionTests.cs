@@ -8,6 +8,7 @@ namespace NUnit.ExpressionTests
     using System.Collections.Generic;
     using global::Spreadsheet_Kristian_Suzara;
     using global::SpreadsheetEngine;
+    using global::CptS321;
 
     using NUnit.Framework;
 
