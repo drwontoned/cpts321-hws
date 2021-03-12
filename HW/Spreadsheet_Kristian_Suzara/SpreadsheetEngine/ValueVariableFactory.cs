@@ -40,7 +40,7 @@ namespace CptS321
             }
 
             // Create a variableNode otherwise.
-            return new VariableNode(node);
+            return new VariableNode(0);
         }
     }
 }

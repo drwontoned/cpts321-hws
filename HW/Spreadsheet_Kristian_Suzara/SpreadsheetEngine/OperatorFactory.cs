@@ -31,7 +31,7 @@ namespace CptS321
         /// <summary>
         /// Method for creating the different types of TreeNodes.
         /// </summary>
-        /// <param name="node">
+        /// <param name="op">
         /// The string that will be looked at and converted to a node.
         /// </param>
         /// <returns>
@@ -92,7 +92,6 @@ namespace CptS321
         /// </summary>
         private class DivisionOperator : OperatorNode
         {
-
             public DivisionOperator()
             {
             }

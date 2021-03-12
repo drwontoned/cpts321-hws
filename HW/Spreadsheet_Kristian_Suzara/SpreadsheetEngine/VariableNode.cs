@@ -29,9 +29,9 @@ namespace CptS321
         }
 
         /// <summary>
-        /// Gets Variable name.
+        /// Gets or sets variable value.
         /// </summary>
-        public double Value { get => this.value; }
+        public double Value { get => this.value; set => this.value = value; }
 
         /// <summary>
         /// Method that evaluates this node.

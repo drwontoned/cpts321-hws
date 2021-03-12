@@ -16,7 +16,7 @@ namespace CptS321
     public class ExpressionTree
     {
         private readonly TreeNode root;
-        private readonly Dictionary<string, double> variableDictionary = new Dictionary<string, double>();
+        private readonly Dictionary<string, VariableNode> variableDictionary = new Dictionary<string, VariableNode>();
         private ValueVariableFactory factory = new ValueVariableFactory();
         private OperatorFactory opFactory = new OperatorFactory();
         private string expression;
@@ -57,21 +57,27 @@ namespace CptS321
                         // If it is a value.
                         if (char.IsDigit(current[0]))
                         {
-                            // Then create a ValueNode based on current string and push to the stack.
+                            // Create a ValueNode based on current string.
+                            ValueNode thisVariable = this.factory.CreateNode(current) as ValueNode;
+
+                            // Push node in to the stack.
                             nodeStack.Push(this.factory.CreateNode(current));
                         }
 
                         // Otherwise it is a variable.
                         else
                         {
-                            // Create a VariableNode based on current string and push to the stack.
-                            nodeStack.Push(this.factory.CreateNode(current));
+                            // Create a VariableNode based on current string
+                            VariableNode thisVariable = this.factory.CreateNode(current) as VariableNode;
+
+                            // Push node in to the stack.
+                            nodeStack.Push(thisVariable);
 
                             // If the dictionary does not already contain this variable.
                             if (!this.variableDictionary.ContainsKey(current))
                             {
-                                // Then add this variable to the dictionary with a value of 0.
-                                this.variableDictionary.Add(current, 0.0);
+                                // Then add this variable to the dictionary.
+                                this.variableDictionary.Add(current, thisVariable);
                             }
                         }
                     }
@@ -82,11 +88,11 @@ namespace CptS321
                         // Set current OperatorNode
                         OperatorNode currentOperator = this.opFactory.CreateOperatorNode(current);
 
-                        // Pop out a Tree node from the stack and set current OperatorNodes right child.
-                        currentOperator.RightChild = nodeStack.Pop() as TreeNode;
-
                         // Pop out a Tree node from the stack and set current OperatorNodes left child.
                         currentOperator.LeftChild = nodeStack.Pop() as TreeNode;
+
+                        // Pop out a Tree node from the stack and set current OperatorNodes right child.
+                        currentOperator.RightChild = nodeStack.Pop() as TreeNode;
 
                         // Push the operator into the stack.
                         nodeStack.Push(currentOperator);
@@ -220,7 +226,7 @@ namespace CptS321
         /// </returns>
         public double GetVariableValue(string variableName)
         {
-            return this.variableDictionary[variableName];
+            return this.variableDictionary[variableName].Value;
         }
 
         /// <summary>
@@ -234,7 +240,7 @@ namespace CptS321
         /// </param>
         public void SetVariable(string variableName, double variableValue)
         {
-            this.variableDictionary[variableName] = variableValue;
+            this.variableDictionary[variableName].Value = variableValue;
         }
 
         /// <summary>
