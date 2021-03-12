@@ -90,128 +90,128 @@ namespace NUnit.ExpressionTests
             // test normal addition between two values
             ExpressionTree testTree = new ExpressionTree("5+5");
             Assert.AreEqual(
-                10.0, 
-                testTree.Evaluate()); 
+                10.0,
+                testTree.Evaluate());
 
             // test normal addition between a positive variable and a value
-            testTree = new ExpressionTree("A+15");
+            testTree = new ExpressionTree("A1+15");
             testTree.SetVariable("A1", 5.0);
             Assert.AreEqual(
-                20.0, 
-                testTree.Evaluate()); 
+                20.0,
+                testTree.Evaluate());
 
             // test normal addition between a negative variable and a value
             testTree.SetVariable("A1", -5.0);
             Assert.AreEqual(
-                10.0, 
-                testTree.Evaluate()); 
+                10.0,
+                testTree.Evaluate());
 
             // test addition between a variable at max value and a value
             testTree.SetVariable("A1", double.MaxValue);
             Assert.AreEqual(
-                double.MaxValue, 
-                testTree.Evaluate()); 
+                double.MaxValue,
+                testTree.Evaluate());
 
             // test addition between a variable at min value and a value
             testTree.SetVariable("A1", double.MinValue);
             Assert.AreEqual(
-                double.MinValue, 
-                testTree.Evaluate()); 
+                double.MinValue,
+                testTree.Evaluate());
 
             // test addition between a variable at positive infinity and a value
             testTree.SetVariable("A1", double.PositiveInfinity);
             Assert.AreEqual(
-                double.PositiveInfinity, 
-                testTree.Evaluate()); 
+                double.PositiveInfinity,
+                testTree.Evaluate());
 
             // test addition between a variable at negatuve infinity and a value
             testTree.SetVariable("A1", double.NegativeInfinity);
             Assert.AreEqual(
-                double.NegativeInfinity, 
-                testTree.Evaluate()); 
+                double.NegativeInfinity,
+                testTree.Evaluate());
 
             // test normal addition between a positive variable and a positive variable
-            testTree = new ExpressionTree("A+B");
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree = new ExpressionTree("A1+B1");
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
-                15.0, 
-                testTree.Evaluate()); 
+                15.0,
+                testTree.Evaluate());
 
             // test normal addition between a negative variable and a negative variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
-                -15.0, 
+                -15.0,
                 testTree.Evaluate());
 
             // test normal addition between a positive variable and a negative variable
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
                 -5.0,
                 testTree.Evaluate());
 
             // test normal addition between a negative variable and a positive variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
-                5.0, 
-                testTree.Evaluate()); 
+                5.0,
+                testTree.Evaluate());
 
             // test addition between two variables at max value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
-                double.PositiveInfinity, 
-                testTree.Evaluate()); 
+                double.PositiveInfinity,
+                testTree.Evaluate());
 
             // test addition between two variables at min value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
-                double.NegativeInfinity, 
-                testTree.Evaluate()); 
+                double.NegativeInfinity,
+                testTree.Evaluate());
 
             // test addition between a variable at max value and a variable at min value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
-                0, 
+                0,
                 testTree.Evaluate());
 
             // test addition between a variable at min value and a variable at max value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
                 0,
                 testTree.Evaluate());
 
 
             // test addition between two variables at positive infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
-                double.PositiveInfinity, 
-                testTree.Evaluate()); 
+                double.PositiveInfinity,
+                testTree.Evaluate());
 
             // test addition between two variables at negative infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
-                double.NegativeInfinity, 
+                double.NegativeInfinity,
                 testTree.Evaluate());
 
             // test addition between a variable at positive infinity and a variable at negative infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
 
             // test addition between a variable at negative infinity and a variable at positive infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
@@ -230,7 +230,7 @@ namespace NUnit.ExpressionTests
                 testTree.Evaluate());
 
             // test normal subtraction between a positive variable and a value
-            testTree = new ExpressionTree("A-15");
+            testTree = new ExpressionTree("A1-15");
             testTree.SetVariable("A1", 5.0);
             Assert.AreEqual(
                 -10.0,
@@ -267,86 +267,86 @@ namespace NUnit.ExpressionTests
                 testTree.Evaluate());
 
             // test normal subtraction between a positive variable and a positive variable
-            testTree = new ExpressionTree("A-B");
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree = new ExpressionTree("A1-B1");
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
                 -5.0,
                 testTree.Evaluate());
 
             // test normal subtraction between a negative variable and a negative variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
                 5.0,
                 testTree.Evaluate());
 
             // test normal subtraction between a positive variable and a negative variable
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
                 15.0,
                 testTree.Evaluate());
 
             // test normal subtraction between a negative variable and a positive variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
                 -15.0,
                 testTree.Evaluate());
 
             // test subtraction between two variables at max value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
                 0,
                 testTree.Evaluate());
 
             // test subtraction between two variables at min value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
                 0,
                 testTree.Evaluate());
 
             // test subtraction between a variable at max value and a variable at min value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
                 double.PositiveInfinity,
                 testTree.Evaluate());
 
             // test subtraction between a variable at min value and a variable at max value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
                 double.NegativeInfinity,
                 testTree.Evaluate());
 
             // test subtraction between two variables at positive infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
 
             // test subtraction between two variables at negative infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
 
             // test subtraction between a variable at positive infinity and a variable at negative infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
                 double.PositiveInfinity,
                 testTree.Evaluate());
 
             // test subtraction between a variable at negative infinity and a variable at positive infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
                 double.NegativeInfinity,
                 testTree.Evaluate());
@@ -365,7 +365,7 @@ namespace NUnit.ExpressionTests
                 testTree.Evaluate());
 
             // test normal multiplication between a positive variable and a value
-            testTree = new ExpressionTree("A*15");
+            testTree = new ExpressionTree("A1*15");
             testTree.SetVariable("A1", 5.0);
             Assert.AreEqual(
                 75.0,
@@ -402,87 +402,87 @@ namespace NUnit.ExpressionTests
                 testTree.Evaluate());
 
             // test normal multiplication between a positive variable and a positive variable
-            testTree = new ExpressionTree("A*B");
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree = new ExpressionTree("A1*B1");
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
                 50.0,
                 testTree.Evaluate());
 
             // test normal multiplication between a negative variable and a negative variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
                 50.0,
                 testTree.Evaluate());
 
             // test normal multiplication between a positive variable and a negative variable
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
                 -50.0,
                 testTree.Evaluate());
 
             // test normal multiplication between a negative variable and a positive variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
                 -50.0,
                 testTree.Evaluate());
 
             // test multiplication between two variables at max value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
                 double.PositiveInfinity,
                 testTree.Evaluate());
 
             // test multiplication between two variables at min value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
                 double.PositiveInfinity,
                 testTree.Evaluate());
 
             // test multiplication between a variable at max value and a variable at min value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
                 double.NegativeInfinity,
                 testTree.Evaluate());
 
             // test multiplication between a variable at min value and a variable at max value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
                 double.NegativeInfinity,
                 testTree.Evaluate());
 
 
             // test multiplication between two variables at positive infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
                 double.PositiveInfinity,
                 testTree.Evaluate());
 
             // test multiplication between two variables at negative infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
                 double.PositiveInfinity,
                 testTree.Evaluate());
 
             // test multiplication between a variable at positive infinity and a variable at negative infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
                 double.NegativeInfinity,
                 testTree.Evaluate());
 
             // test multiplication between a variable at negative infinity and a variable at positive infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
                 double.NegativeInfinity,
                 testTree.Evaluate());
@@ -501,7 +501,7 @@ namespace NUnit.ExpressionTests
                 testTree.Evaluate());
 
             // test normal division between a positive variable and a value
-            testTree = new ExpressionTree("A/10");
+            testTree = new ExpressionTree("A1/10");
             testTree.SetVariable("A1", 5.0);
             Assert.AreEqual(
                 0.5,
@@ -538,87 +538,87 @@ namespace NUnit.ExpressionTests
                 testTree.Evaluate());
 
             // test normal division between a positive variable and a positive variable
-            testTree = new ExpressionTree("A/B");
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree = new ExpressionTree("A1/B1");
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
                 0.5,
                 testTree.Evaluate());
 
             // test normal division between a negative variable and a negative variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
                 0.5,
                 testTree.Evaluate());
 
             // test normal division between a positive variable and a negative variable
-            testTree.SetVariable("A", 5.0);
-            testTree.SetVariable("B", -10.0);
+            testTree.SetVariable("A1", 5.0);
+            testTree.SetVariable("B1", -10.0);
             Assert.AreEqual(
                 -0.5,
                 testTree.Evaluate());
 
             // test normal division between a negative variable and a positive variable
-            testTree.SetVariable("A", -5.0);
-            testTree.SetVariable("B", 10.0);
+            testTree.SetVariable("A1", -5.0);
+            testTree.SetVariable("B1", 10.0);
             Assert.AreEqual(
                 -0.5,
                 testTree.Evaluate());
 
             // test division between two variables at max value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
                 1,
                 testTree.Evaluate());
 
             // test division between two variables at min value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
                 1,
                 testTree.Evaluate());
 
             // test division between a variable at max value and a variable at min value
-            testTree.SetVariable("A", double.MaxValue);
-            testTree.SetVariable("B", double.MinValue);
+            testTree.SetVariable("A1", double.MaxValue);
+            testTree.SetVariable("B1", double.MinValue);
             Assert.AreEqual(
                 -1,
                 testTree.Evaluate());
 
             // test division between a variable at min value and a variable at max value
-            testTree.SetVariable("A", double.MinValue);
-            testTree.SetVariable("B", double.MaxValue);
+            testTree.SetVariable("A1", double.MinValue);
+            testTree.SetVariable("B1", double.MaxValue);
             Assert.AreEqual(
                 -1,
                 testTree.Evaluate());
 
 
             // test division between two variables at positive infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
 
             // test division between two variables at negative infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
 
             // test division between a variable at positive infinity and a variable at negative infinity
-            testTree.SetVariable("A", double.PositiveInfinity);
-            testTree.SetVariable("B", double.NegativeInfinity);
+            testTree.SetVariable("A1", double.PositiveInfinity);
+            testTree.SetVariable("B1", double.NegativeInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
 
             // test division between a variable at negative infinity and a variable at positive infinity
-            testTree.SetVariable("A", double.NegativeInfinity);
-            testTree.SetVariable("B", double.PositiveInfinity);
+            testTree.SetVariable("A1", double.NegativeInfinity);
+            testTree.SetVariable("B1", double.PositiveInfinity);
             Assert.AreEqual(
                 double.NaN,
                 testTree.Evaluate());
