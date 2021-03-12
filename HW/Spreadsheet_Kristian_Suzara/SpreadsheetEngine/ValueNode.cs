@@ -10,7 +10,27 @@ namespace CptS321
     using System.Text;
     using System.Threading.Tasks;
 
-    class ValueNode : TreeNode
+    /// <summary>
+    /// Node class for values.
+    /// </summary>
+    public class ValueNode : TreeNode
     {
+        private double value;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValueNode"/> class.
+        /// </summary>
+        /// <param name="value">
+        /// The value of this node.
+        /// </param>
+        public ValueNode(double value)
+        {
+            this.value = value;
+        }
+
+        /// <summary>
+        /// Gets value.
+        /// </summary>
+        public double Value { get => this.value; }
     }
 }
