@@ -53,7 +53,7 @@ namespace CptS321
 
             public override double Evaluate()
             {
-                return this.RightChild.Evaluate() + this.LeftChild.Evaluate();
+                return this.LeftChild.Evaluate() + this.RightChild.Evaluate();
             }
         }
 
@@ -68,7 +68,7 @@ namespace CptS321
 
             public override double Evaluate()
             {
-                return this.RightChild.Evaluate() - this.LeftChild.Evaluate();
+                return this.LeftChild.Evaluate() - this.RightChild.Evaluate();
             }
         }
 
@@ -83,7 +83,7 @@ namespace CptS321
 
             public override double Evaluate()
             {
-                return this.RightChild.Evaluate() * this.LeftChild.Evaluate();
+                return this.LeftChild.Evaluate() * this.RightChild.Evaluate();
             }
         }
 
@@ -98,7 +98,7 @@ namespace CptS321
 
             public override double Evaluate()
             {
-                return this.RightChild.Evaluate() / this.LeftChild.Evaluate();
+                return this.LeftChild.Evaluate() / this.RightChild.Evaluate();
             }
         }
     }

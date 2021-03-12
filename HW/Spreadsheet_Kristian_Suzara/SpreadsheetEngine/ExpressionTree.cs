@@ -88,11 +88,11 @@ namespace CptS321
                         // Set current OperatorNode
                         OperatorNode currentOperator = this.opFactory.CreateOperatorNode(current);
 
-                        // Pop out a Tree node from the stack and set current OperatorNodes left child.
-                        currentOperator.LeftChild = nodeStack.Pop() as TreeNode;
-
                         // Pop out a Tree node from the stack and set current OperatorNodes right child.
                         currentOperator.RightChild = nodeStack.Pop() as TreeNode;
+
+                        // Pop out a Tree node from the stack and set current OperatorNodes left child.
+                        currentOperator.LeftChild = nodeStack.Pop() as TreeNode;
 
                         // Push the operator into the stack.
                         nodeStack.Push(currentOperator);
