@@ -13,7 +13,6 @@ namespace ExpressionConsoleApp
     public class Program
     {
         private static ExpressionTree tree = new ExpressionTree("A1+B1+C1");
-
         /// <summary>
         /// Console apps main method.
         /// </summary>
@@ -22,7 +21,30 @@ namespace ExpressionConsoleApp
         /// </param>
         public static void Main(string[] args)
         {
+            
             Menu();
+            string input = string.Empty;
+            while (input != "0")
+            {
+                input = Console.ReadLine();
+                if (input == "1")
+                {
+                    InputOne();
+                }
+                else if (input == "2")
+                {
+                    InputTwo();
+                }
+                else if (input == "3")
+                {
+                    InputThree();
+                }
+                else
+                {
+                    InputFour();
+                }
+            }
+
         }
 
         /// <summary>
@@ -65,6 +87,24 @@ namespace ExpressionConsoleApp
             value = Convert.ToDouble(variableValue);
             tree.SetVariable(variableName, value);
             Menu();
+        }
+
+        /// <summary>
+        /// Method for evaluating the tree.
+        /// </summary>
+        public static void InputThree()
+        {
+            Console.WriteLine(tree.Evaluate() + "\r\n");
+            Menu();
+        }
+
+        /// <summary>
+        /// Method for quitting out of the console app.
+        /// </summary>
+        public static void InputFour()
+        {
+            Console.WriteLine("Done");
+            Environment.Exit(0);
         }
     }
 }

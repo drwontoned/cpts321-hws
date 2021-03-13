@@ -39,7 +39,22 @@ namespace CptS321
         /// </returns>
         public OperatorNode CreateOperatorNode(string op)
         {
-            return this.operatorDictionary[op];
+            if (op == "+")
+            {
+                return new AdditionOperator();
+            }
+            else if (op == "-")
+            {
+                return new SubtractionOperator();
+            }
+            else if (op == "*")
+            {
+                return new MultiplicationOperator();
+            }
+            else
+            {
+                return new DivisionOperator();
+            }
         }
 
         /// <summary>
