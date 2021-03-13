@@ -38,5 +38,33 @@ namespace ExpressionConsoleApp
                 "  3 = Evaluate tree\r\n" +
                 "  4 = Quit\r\n");
         }
+
+        /// <summary>
+        /// Method for entering a new exprsssion.
+        /// </summary>
+        public static void InputOne()
+        {
+            Console.WriteLine("Enter a new expression: ");
+            string expression = Console.ReadLine();
+            tree = new ExpressionTree(expression);
+            Menu();
+        }
+
+        /// <summary>
+        /// Method for setting a variable value.
+        /// </summary>
+        public static void InputTwo()
+        {
+            string variableName;
+            string variableValue;
+            double value;
+            Console.WriteLine("Enter variable name: ");
+            variableName = Console.ReadLine();
+            Console.WriteLine("Enter variable value: ");
+            variableValue = Console.ReadLine();
+            value = Convert.ToDouble(variableValue);
+            tree.SetVariable(variableName, value);
+            Menu();
+        }
     }
 }
