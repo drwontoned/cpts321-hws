@@ -17,8 +17,8 @@ namespace CptS321
     {
         private readonly TreeNode root;
         private readonly Dictionary<string, VariableNode> variableDictionary = new Dictionary<string, VariableNode>();
-        private ValueVariableFactory factory = new ValueVariableFactory();
-        private OperatorFactory opFactory = new OperatorFactory();
+        private readonly ValueVariableFactory factory = new ValueVariableFactory();
+        private readonly OperatorFactory opFactory = new OperatorFactory();
         private string expression;
 
         /// <summary>
@@ -58,10 +58,10 @@ namespace CptS321
                         if (char.IsDigit(current[0]))
                         {
                             // Create a ValueNode based on current string.
-                            ValueNode thisVariable = this.factory.CreateNode(current) as ValueNode;
+                            ValueNode thisValue = this.factory.CreateNode(current) as ValueNode;
 
                             // Push node in to the stack.
-                            nodeStack.Push(this.factory.CreateNode(current));
+                            nodeStack.Push(thisValue);
                         }
 
                         // Otherwise it is a variable.

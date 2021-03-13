@@ -13,15 +13,12 @@ namespace ExpressionConsoleApp
     public class Program
     {
         private static ExpressionTree tree = new ExpressionTree("A1+B1+C1");
+
         /// <summary>
         /// Console apps main method.
         /// </summary>
-        /// <param name="args">
-        /// string array args.
-        /// </param>
-        public static void Main(string[] args)
+        public static void Main()
         {
-            
             Menu();
             string input = string.Empty;
             while (input != "0")
@@ -44,7 +41,6 @@ namespace ExpressionConsoleApp
                     InputFour();
                 }
             }
-
         }
 
         /// <summary>
