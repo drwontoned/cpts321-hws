@@ -135,21 +135,25 @@ namespace CptS321
                     nodeString += current;
                 }
 
-                // otherwise it is an operator or parenthesis.
+                // otherwise it is an operator, parenthesis or space.
                 else
                 {
-                    // If the nodeString is not empty.
-                    if (nodeString != string.Empty)
+                    // If current char is not a space.
+                    if (current != ' ')
                     {
-                        // Add the string (which should be a variable or value) to the list.
-                        nodeStringList.Add(nodeString);
+                        // If the nodeString is not empty.
+                        if (nodeString != string.Empty)
+                        {
+                            // Add the string (which should be a variable or value) to the list.
+                            nodeStringList.Add(nodeString);
+                        }
+
+                        // Reset the nodeString.
+                        nodeString = string.Empty;
+
+                        // Add the current char as a string to the list.
+                        nodeStringList.Add(current.ToString());
                     }
-
-                    // Reset the nodeString.
-                    nodeString = string.Empty;
-
-                    // Add the current char as a string to the list.
-                    nodeStringList.Add(current.ToString());
                 }
             }
 
