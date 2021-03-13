@@ -109,7 +109,7 @@ namespace SpreadsheetEngine
                 int row = this.GetRowNumber(cell.Text); // the row number based on string input
                 int column = this.GetColumnNumber(cell.Text); // the column number based on string input
                 this.spreadsheet[cell.RowIndex, cell.ColumnIndex]
-                    .SetValue(this.spreadsheet[row, column].Text); // set this current cell's value to the text of cell being referred to.
+                    .SetValue(this.spreadsheet[row, column].Value); // set this current cell's value to the text of cell being referred to.
             }
 
             this.CellPropertyChanged(cell, e);
