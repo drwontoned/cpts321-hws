@@ -15,17 +15,17 @@ namespace CptS321
     /// </summary>
     public class OperatorFactory
     {
-        private Dictionary<string, OperatorNode> operatorDictionary = new Dictionary<string, OperatorNode>();
+        private Dictionary<string, int> operatorDictionary = new Dictionary<string, int>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OperatorFactory"/> class.
         /// </summary>
         public OperatorFactory()
         {
-            this.operatorDictionary.Add("+", new AdditionOperator());
-            this.operatorDictionary.Add("-", new SubtractionOperator());
-            this.operatorDictionary.Add("*", new MultiplicationOperator());
-            this.operatorDictionary.Add("/", new DivisionOperator());
+            this.operatorDictionary.Add("+", 1);
+            this.operatorDictionary.Add("-", 1);
+            this.operatorDictionary.Add("*", 2);
+            this.operatorDictionary.Add("/", 2);
         }
 
         /// <summary>
@@ -41,19 +41,19 @@ namespace CptS321
         {
             if (op == "+")
             {
-                return new AdditionOperator();
+                return new AdditionOperator(operatorDictionary[op]);
             }
             else if (op == "-")
             {
-                return new SubtractionOperator();
+                return new SubtractionOperator(operatorDictionary[op]);
             }
             else if (op == "*")
             {
-                return new MultiplicationOperator();
+                return new MultiplicationOperator(operatorDictionary[op]);
             }
             else
             {
-                return new DivisionOperator();
+                return new DivisionOperator(operatorDictionary[op]);
             }
         }
 
@@ -62,8 +62,9 @@ namespace CptS321
         /// </summary>
         private class AdditionOperator : OperatorNode
         {
-            public AdditionOperator()
+            public AdditionOperator(int precedence)
             {
+                this.Precedence = precedence;
             }
 
             public override double Evaluate()
@@ -77,8 +78,9 @@ namespace CptS321
         /// </summary>
         private class SubtractionOperator : OperatorNode
         {
-            public SubtractionOperator()
+            public SubtractionOperator(int precedence)
             {
+                this.Precedence = precedence;
             }
 
             public override double Evaluate()
@@ -92,8 +94,9 @@ namespace CptS321
         /// </summary>
         private class MultiplicationOperator : OperatorNode
         {
-            public MultiplicationOperator()
+            public MultiplicationOperator(int precedence)
             {
+                this.Precedence = precedence;
             }
 
             public override double Evaluate()
@@ -107,8 +110,9 @@ namespace CptS321
         /// </summary>
         private class DivisionOperator : OperatorNode
         {
-            public DivisionOperator()
+            public DivisionOperator(int precedence)
             {
+                this.Precedence = precedence;
             }
 
             public override double Evaluate()

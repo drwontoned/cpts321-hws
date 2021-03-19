@@ -15,8 +15,14 @@ namespace CptS321
     /// </summary>
     public abstract class OperatorNode : TreeNode
     {
+        private int precedence = 0;
         private TreeNode rightChild = null;
         private TreeNode leftChild = null;
+
+        /// <summary>
+        /// Gets or sets for Precedence.
+        /// </summary>
+        public int Precedence { get => this.precedence; set => this.precedence = value; }
 
         /// <summary>
         /// Gets or sets for RightChild.
