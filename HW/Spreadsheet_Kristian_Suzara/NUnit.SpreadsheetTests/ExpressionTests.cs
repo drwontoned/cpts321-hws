@@ -687,7 +687,7 @@ namespace NUnit.ExpressionTests
         }
 
         /// <summary>
-        /// Test ExpressionTree expressions with different operators from evaluate.
+        /// Test ExpressionTree expressions with different operators and parenthesis from evaluate.
         /// </summary>
         [Test]
         public void TestExpressionTreeParenthesis()
@@ -751,6 +751,36 @@ namespace NUnit.ExpressionTests
             Assert.AreEqual(
                 50,
                 testTree.Evaluate());
+        }
+
+        /// <summary>
+        /// Test ExpressionTree variables.
+        /// </summary>
+        [Test]
+        public void TestExpressionTreeVariables()
+        {
+            // test multi character values for variables
+            ExpressionTree testTree = new ExpressionTree("Variable1+1");
+            Assert.AreEqual(
+                true,
+                testTree.ContainsVariable("Variable1"));
+
+            // test if value defaults to 0
+            Assert.AreEqual(
+                0.0,
+                testTree.GetVariableValue("Variable1"));
+
+            // test if variable is stored
+            testTree.Evaluate();
+            Assert.AreEqual(
+                0.0,
+                testTree.GetVariableValue("Variable1"));
+
+            // test if variable gets cleared out when the expression changes
+            testTree = new ExpressionTree("V1+1");
+            Assert.AreEqual(
+                false,
+                testTree.ContainsVariable("Variable1"));
         }
     }
 }
