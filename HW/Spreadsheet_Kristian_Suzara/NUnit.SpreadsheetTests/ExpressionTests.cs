@@ -618,5 +618,169 @@ namespace NUnit.ExpressionTests
                 double.NaN,
                 testTree.Evaluate());
         }
+
+        /// <summary>
+        /// Test ExpressionTree expressions with different operators from evaluate.
+        /// </summary>
+        [Test]
+        public void TestExpressionTreeDifferentOperators()
+        {
+            // test expression with two operators (+ and -) that have the same precedence
+            ExpressionTree testTree = new ExpressionTree("5+10-20");
+            Assert.AreEqual(
+                -5,
+                testTree.Evaluate());
+
+            // test expression with two operators (+ and -) that have the same precedence in a different order
+            testTree = new ExpressionTree("5-10+20");
+            Assert.AreEqual(
+                15,
+                testTree.Evaluate());
+
+            // test expression with two operators (* and /) that have the same precedence
+            testTree = new ExpressionTree("5*10/20");
+            Assert.AreEqual(
+                2.5,
+                testTree.Evaluate());
+
+            // test expression with two operators (* and /) that have the same precedence in a different order
+            testTree = new ExpressionTree("5/10*20");
+            Assert.AreEqual(
+                10,
+                testTree.Evaluate());
+
+            // test expression with two operators (+ and *) that have different precedence
+            testTree = new ExpressionTree("5+10*20");
+            Assert.AreEqual(
+                205,
+                testTree.Evaluate());
+
+            // test expression with two operators (+ and *) that have different precedence in a different order
+            testTree = new ExpressionTree("5*10+20");
+            Assert.AreEqual(
+                70,
+                testTree.Evaluate());
+
+            // test expression with two operators (- and /) that have different precedence
+            testTree = new ExpressionTree("5-10/20");
+            Assert.AreEqual(
+                4.5,
+                testTree.Evaluate());
+
+            // test expression with two operators (- and /) that have different precedence in a different order
+            testTree = new ExpressionTree("5/10-20");
+            Assert.AreEqual(
+                -19.5,
+                testTree.Evaluate());
+
+            // test expression with four operators (+, -, *, and /)
+            testTree = new ExpressionTree("5+10-20*40/80");
+            Assert.AreEqual(
+                5,
+                testTree.Evaluate());
+
+            // test expression with four operators (+, -, *, and /) in a different order
+            testTree = new ExpressionTree("5/10*20-40+80");
+            Assert.AreEqual(
+                50,
+                testTree.Evaluate());
+        }
+
+        /// <summary>
+        /// Test ExpressionTree expressions with different operators and parenthesis from evaluate.
+        /// </summary>
+        [Test]
+        public void TestExpressionTreeParenthesis()
+        {
+            // test expression with two operators (+ and -) that have the same precedence and parenthesis around the back end of the expression
+            ExpressionTree testTree = new ExpressionTree("5+(10-20)");
+            Assert.AreEqual(
+                -5,
+                testTree.Evaluate());
+
+            // test expression with two operators (+ and -) that have the same precedence in a different order and parenthesis around the back end of the expression
+            testTree = new ExpressionTree("5-(10+20)");
+            Assert.AreEqual(
+                -25,
+                testTree.Evaluate());
+
+            // test expression with two operators (* and /) that have the same precedence and parenthesis around the back end of the expression
+            testTree = new ExpressionTree("5*(10/20)");
+            Assert.AreEqual(
+                2.5,
+                testTree.Evaluate());
+
+            // test expression with two operators (* and /) that have the same precedence in a different order and parenthesis around the back end of the expression
+            testTree = new ExpressionTree("5/(10*20)");
+            Assert.AreEqual(
+                0.025,
+                testTree.Evaluate());
+
+            // test expression with two operators (+ and *) that have different precedence and parenthesis around the back end of the expression
+            testTree = new ExpressionTree("5+(10*20)");
+            Assert.AreEqual(
+                205,
+                testTree.Evaluate());
+
+            // test expression with two operators (+ and *) that have different precedence in a different order and parenthesis around the back end of the expression
+            testTree = new ExpressionTree("5*(10+20)");
+            Assert.AreEqual(
+                150,
+                testTree.Evaluate());
+
+            // test expression with two operators (- and /) that have different precedence and parenthesis around the back end of the expression
+            testTree = new ExpressionTree("5-(10/20)");
+            Assert.AreEqual(
+                4.5,
+                testTree.Evaluate());
+
+            // test expression with two operators (- and /) that have different precedence in a different order and parenthesis around the back end of the expression
+            testTree = new ExpressionTree("5/(10-20)");
+            Assert.AreEqual(
+                -0.5,
+                testTree.Evaluate());
+
+            // test expression with four operators (+, -, *, and /) and multiple sets of parenthesis
+            testTree = new ExpressionTree("((((5+10)-20)*40)/80)");
+            Assert.AreEqual(
+                -2.5,
+                testTree.Evaluate());
+
+            // test expression with four operators (+, -, *, and /) in a different order and multiple sets of parenthesis
+            testTree = new ExpressionTree("((((5/10)*20)-40)+80)");
+            Assert.AreEqual(
+                50,
+                testTree.Evaluate());
+        }
+
+        /// <summary>
+        /// Test ExpressionTree variables.
+        /// </summary>
+        [Test]
+        public void TestExpressionTreeVariables()
+        {
+            // test multi character values for variables
+            ExpressionTree testTree = new ExpressionTree("Variable1+1");
+            Assert.AreEqual(
+                true,
+                testTree.ContainsVariable("Variable1"));
+
+            // test if value defaults to 0
+            Assert.AreEqual(
+                0.0,
+                testTree.GetVariableValue("Variable1"));
+
+            // test if variable is stored
+            testTree.Evaluate();
+            Assert.AreEqual(
+                0.0,
+                testTree.GetVariableValue("Variable1"));
+
+            // test if variable gets cleared out when the expression changes
+            testTree = new ExpressionTree("V1+1");
+            Assert.AreEqual(
+                false,
+                testTree.ContainsVariable("Variable1"));
+        }
     }
 }
