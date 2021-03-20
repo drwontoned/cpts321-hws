@@ -41,19 +41,19 @@ namespace CptS321
         {
             if (op == "+")
             {
-                return new AdditionOperator(operatorDictionary[op]);
+                return new AdditionOperator(this.operatorDictionary[op]);
             }
             else if (op == "-")
             {
-                return new SubtractionOperator(operatorDictionary[op]);
+                return new SubtractionOperator(this.operatorDictionary[op]);
             }
             else if (op == "*")
             {
-                return new MultiplicationOperator(operatorDictionary[op]);
+                return new MultiplicationOperator(this.operatorDictionary[op]);
             }
             else
             {
-                return new DivisionOperator(operatorDictionary[op]);
+                return new DivisionOperator(this.operatorDictionary[op]);
             }
         }
 
@@ -68,7 +68,7 @@ namespace CptS321
         /// </returns>
         public bool InDictionary(string op)
         {
-            return operatorDictionary.ContainsKey(op);
+            return this.operatorDictionary.ContainsKey(op);
         }
 
         /// <summary>

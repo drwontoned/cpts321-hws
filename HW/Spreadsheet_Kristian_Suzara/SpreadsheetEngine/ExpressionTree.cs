@@ -219,7 +219,6 @@ namespace CptS321
                     // Otherwise pop from the stack.
                     else
                     {
-
                         operatorStack.Pop();
                     }
                 }
@@ -301,11 +300,12 @@ namespace CptS321
         public int CheckPrecedence(char operatorType)
         {
             // If an operator return the precedence.
-            if(opFactory.InDictionary(operatorType.ToString()))
+            if (this.opFactory.InDictionary(operatorType.ToString()))
             {
-                return opFactory.CreateOperatorNode(operatorType.ToString()).Precedence;
+                return this.opFactory.CreateOperatorNode(operatorType.ToString()).Precedence;
             }
-            // Otherwise return -1;
+
+            // Otherwise return -1.
             return -1;
         }
 
@@ -320,7 +320,7 @@ namespace CptS321
         /// </returns>
         public bool ContainsVariable(string var)
         {
-            return variableDictionary.ContainsKey(var);
+            return this.variableDictionary.ContainsKey(var);
         }
     }
 }
