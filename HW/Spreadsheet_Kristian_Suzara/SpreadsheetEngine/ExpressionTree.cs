@@ -308,5 +308,19 @@ namespace CptS321
             // Otherwise return -1;
             return -1;
         }
+
+        /// <summary>
+        /// Method for checking if a string exists as a key (variable name) within the dictionary.
+        /// </summary>
+        /// <param name="var">
+        /// The variable name.
+        /// </param>
+        /// <returns>
+        /// bool value for if the string exists as a key or not.
+        /// </returns>
+        public bool ContainsVariable(string var)
+        {
+            return variableDictionary.ContainsKey(var);
+        }
     }
 }
