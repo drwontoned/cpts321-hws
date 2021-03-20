@@ -186,18 +186,49 @@ namespace CptS321
             {
                 string current = list.ElementAt(i);
 
-                // If the first char of the string is a letter or digit then we know its a variable or value
+                // If the first char of the string is a letter or digit then we know its a variable or value.
                 if (char.IsLetterOrDigit(current[0]))
                 {
                     // Add the string to the list.
                     nodeStringList.Add(current);
                 }
 
+                // If the string is a left parenthesis then just push to stack
+                else if (current == "(")
+                {
+                    operatorStack.Push(current);
+                }
+
+                // If the string is a right parenthesis
+                else if (current == ")")
+                {
+                    // While stack is not empty and the top of the stack is not a left parenthesis.
+                    while (operatorStack.Count > 0 && operatorStack.Peek() != "(")
+                    {
+                        // Pop from stack and add to list.
+                        nodeStringList.Add(operatorStack.Pop());
+                    }
+
+                    // If stack is not empty and the top of the stack is not a left parenthesis.
+                    if (operatorStack.Count > 0 && operatorStack.Peek() != "(")
+                    {
+                        // Return a new list.
+                        return new List<string>();
+                    }
+
+                    // Otherwise pop from the stack.
+                    else
+                    {
+
+                        operatorStack.Pop();
+                    }
+                }
+
                 // Otherwise we know it is an operator.
                 else
                 {
-                    // While the stack is not empty.
-                    while (operatorStack.Count > 0)
+                    // While the stack is not empty and the precedence of the current operator is less than or equal to what is at the top of the stack.
+                    while (operatorStack.Count > 0 && this.CheckPrecedence(current[0]) <= this.CheckPrecedence(operatorStack.Peek()[0]))
                     {
                         // Pop an operator from the stack and add it the the list.
                         nodeStringList.Add(operatorStack.Pop());
@@ -256,6 +287,26 @@ namespace CptS321
         public double Evaluate()
         {
             return this.root.Evaluate();
+        }
+
+        /// <summary>
+        /// Method that returns an int value that represents the level of precedence.
+        /// </summary>
+        /// <param name="operatorType">
+        /// The char that is an operator.
+        /// </param>
+        /// <returns>
+        /// The int value that corresponds with the operators precedence level.
+        /// </returns>
+        public int CheckPrecedence(char operatorType)
+        {
+            // If an operator return the precedence.
+            if(opFactory.InDictionary(operatorType.ToString()))
+            {
+                return opFactory.CreateOperatorNode(operatorType.ToString()).Precedence;
+            }
+            // Otherwise return -1;
+            return -1;
         }
     }
 }

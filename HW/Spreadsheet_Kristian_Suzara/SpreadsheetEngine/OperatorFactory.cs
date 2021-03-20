@@ -58,6 +58,20 @@ namespace CptS321
         }
 
         /// <summary>
+        /// Method for checking if the input string exists as a key (operator) within the dictionary.
+        /// </summary>
+        /// <param name="op">
+        /// string getting checked if it is within the dictionary.
+        /// </param>
+        /// <returns>
+        /// bool value for if the string exists as a key or not.
+        /// </returns>
+        public bool InDictionary(string op)
+        {
+            return operatorDictionary.ContainsKey(op);
+        }
+
+        /// <summary>
         /// Class that represents an addition operator and inherits from OperatorNode.
         /// </summary>
         private class AdditionOperator : OperatorNode
